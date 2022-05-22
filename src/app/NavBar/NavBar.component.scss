@@ -1,0 +1,29 @@
+@import "../colours.scss";
+// Nav Bar
+#logo{
+    margin-left: 10px;
+}
+
+
+#logo:hover {
+  transform: scale(1.2);
+  transition:  ease-in-out .8s;
+  filter: brightness(150);
+}
+
+.nav-item{
+  justify-content: space-between;
+}
+
+.nav-link{
+  font-family: 'Odibee Sans', cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:   $c1 !important;
+}
+
+.navbar-nav li  :hover{
+  border-bottom: $c3 solid 1px;
+  transition:  ease-in-out .4s;
+  color:   $c3 !important;
+}

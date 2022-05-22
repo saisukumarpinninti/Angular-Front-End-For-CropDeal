@@ -1,0 +1,17 @@
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+  <img src="../assets/Images/logo.PNG"  width="80"  height="50" id="logo" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav" >
+    <ul class="navbar-nav" >
+      <li class="nav-item" ><a class="nav-link " [routerLink]="['/']">Home<mat-icon>home</mat-icon></a></li>
+      <li class="nav-item" ><a class="nav-link" [routerLink]="['a']">Buy Crops<mat-icon>storefront</mat-icon></a></li>
+      <li class="nav-item" ><a class="nav-link" [routerLink]="['/s']">Sell Crops<mat-icon>sell</mat-icon></a></li>
+      <li class="nav-item" ><a class="nav-link disabled" [routerLink]="['/s']">Admin<mat-icon>admin_panel_settings</mat-icon></a></li>
+      <li class="nav-item" ><a class="nav-link disabled" [routerLink]="['/s']">About Us<mat-icon>info</mat-icon></a></li>
+    </ul>
+  </div>
+</nav>

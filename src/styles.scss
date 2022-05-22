@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./app/colours.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+html,body {
+    margin: 0px;
+    padding: 0;
+    font-family: 'Mukta', sans-serif;;
+    scroll-behavior: smooth;
+    transition: ease-in-out 0.5s;
+    background-image: url("./assets/Images/ng.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    box-shadow: inset 2000px 0 0 0 rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 1);
+}
+
+
+*::selection {
+  background-color: $dark;
+  color: $c3;
+}
+
+*::-webkit-scrollbar {
+  width: 0.6rem;
+  border: $c3 solid 1px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: $dark;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $c2;
+  border-radius: 1px;
+}
