@@ -1,4 +1,4 @@
-@import "../colours.scss";
+@import "../../assets/scss/colours.scss";
 // Nav Bar
 #logo{
     margin-left: 10px;
@@ -23,7 +23,7 @@
 }
 
 .navbar-nav li  :hover{
-  border-bottom: $c3 solid 1px;
+  // border-bottom: $c3 solid 1px;
   transition:  ease-in-out .4s;
   color:   $c3 !important;
 }
