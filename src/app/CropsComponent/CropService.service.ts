@@ -18,4 +18,6 @@ handlerError(error: HttpErrorResponse) {
   return ObservableThrowError(error.message || "Server Error");
 }
 
+getCrop(id:number):Observable<CropInterface>{
+  return this.http.get<CropInterface>('http://localhost:8081/Crop/'+id).pipe(catchError(this.handlerError));}
 }

@@ -1,0 +1,42 @@
+@import "../../assets/scss/colours.scss";
+#details{
+    width: 20%;
+    padding: 10px;
+    background-color: $light !important;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-primary{
+    margin-top: -30px;
+    background-color: $c1;
+    border-color: $c1;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition:  ease-in-out .4s;
+  }
+
+  h2{
+    font-family: 'Koulen', cursive;
+    font-size: 2rem;
+    color: $c1;
+  }
+  .btn-primary:hover{
+    background-color: $light;
+    color: $c1;
+    border-color: $c4;
+    transition:  ease-in-out .4s;
+}
+.mr-2{
+    padding-bottom: 15px;
+    font-size: 1rem;
+    color: $dark;
+}
+b{
+    color: $c2;
+}
+img{
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+}

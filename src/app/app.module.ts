@@ -7,7 +7,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { CropServiceService } from './CropsComponent/CropService.service';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [					
+  declarations: [						
     AppComponent,
     routedComponents
    ],

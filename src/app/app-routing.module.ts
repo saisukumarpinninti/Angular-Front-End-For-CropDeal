@@ -4,11 +4,13 @@ import { HomeComponent } from './Home/Home.component';
 import { CropsComponentComponent } from './CropsComponent/CropsComponent.component';
 import { NavBarComponent } from './NavBar/NavBar.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { CropComponent } from './crop/crop.component';
 const routes: Routes = [
    { path: 'Home', component: HomeComponent },
    { path: '', pathMatch: 'full', redirectTo: 'Home' },
-   { path: 'crops', component: CropsComponentComponent }
+   { path: 'crops', component: CropsComponentComponent },
+    { path: 'crop/:id', component: CropComponent },
+
 ];
 
 @NgModule({
@@ -16,4 +18,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routedComponents = [HomeComponent, CropsComponentComponent, NavBarComponent, FooterComponent];
+export const routedComponents = [HomeComponent, CropsComponentComponent, NavBarComponent, FooterComponent,
+  CropComponent];
