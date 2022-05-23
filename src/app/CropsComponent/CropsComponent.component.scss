@@ -7,11 +7,14 @@
     width: 100%;
     height: 100%;
   }
-
-  .clicked{
-    opacity: 0.8;
-
+  
+  @media screen and (max-width: 768px) {
+    .container-fluid{
+      flex-direction: column;
+    }
   }
+    
+  
 .card-img-top{
   
     width: 100%;
@@ -21,12 +24,11 @@
   #crop{
     margin-left: 20px;
     width: 100%;
-    height: 100%;
     justify-content: space-around;
   }
  
   .card{
-    scale: 0.2;
+    scale: 0.5;
     margin-top: 10px;
     transition:  ease-in-out .4s;
   }
@@ -36,7 +38,7 @@
     transition:  ease-in-out .4s;
   }
   .card-title{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: koulen;
      color: $c1;
   }
