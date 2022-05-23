@@ -1,0 +1,60 @@
+@import "../../assets/scss/colours.scss";
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    flex-direction: row; 
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+.card-img-top{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+  #crop{
+    margin-left: 20px;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+  }
+ 
+  .card{
+    scale: 0.2;
+    margin-top: 10px;
+    transition:  ease-in-out .4s;
+  }
+
+  .card:hover{
+    transform: translateY(-3px);
+    transition:  ease-in-out .4s;
+  }
+  .card-title{
+    font-size: 1.5rem;
+    font-family: koulen;
+     color: $c1;
+  }
+  .title{
+    font-size: 1.5rem;
+    font-family: Koulen;
+     color: $c3;
+  }
+  .card-text li{
+    list-style: none;
+    margin-left: -40px;
+  }
+
+  
+  .btn-primary{
+    background-color: $c1;
+    border-color: $c1;
+    font-weight: bold;
+    transition:  ease-in-out .4s;
+  }
+    .btn-primary:hover{
+        background-color: $light;
+        color: $c1;
+        border-color: $c4;
+        transition:  ease-in-out .4s;
+    }

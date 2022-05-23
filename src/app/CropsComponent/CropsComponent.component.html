@@ -1,0 +1,25 @@
+<br>
+<h5 class="title text-center">List of all the available crops</h5>
+
+<!-- Boot Strap Cards -->
+<div class="container-fluid">
+  <div class="row" *ngFor="let crop of crops" id="crop">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top"
+        src="https://images.pexels.com/photos/1131407/pexels-photo-1131407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title "><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for {{crop.quantity}} {{crop.type}}s</h5>
+            <ul class="card-text text-left">
+              <li>Name: {{crop.name}}</li>
+              <li>Quantity: {{crop.quantity}}</li>
+              <li>Cost: {{crop.cost}} per {{crop.type}}</li>
+            </ul>
+          <a href="#" class="btn btn-primary">Buy Crop</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

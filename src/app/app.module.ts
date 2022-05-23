@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-import { HomeComponent } from './Home/Home.component';
-import { NavBarComponent } from './NavBar/NavBar.component';
-import { FooterComponent } from './footer/footer.component';
+import { CropServiceService } from './CropsComponent/CropService.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
-      HomeComponent,
-      NavBarComponent,
-      FooterComponent
+    routedComponents
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CropServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
