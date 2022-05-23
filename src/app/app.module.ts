@@ -6,11 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './Home/Home.component';
 import { NavBarComponent } from './NavBar/NavBar.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
       HomeComponent,
       NavBarComponent,
+      FooterComponent
    ],
   imports: [
     BrowserModule,

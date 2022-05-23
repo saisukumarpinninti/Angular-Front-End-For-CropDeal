@@ -19,11 +19,23 @@
   font-family: 'Odibee Sans', cursive;
   font-size: 1.5rem;
   font-weight: bold;
-  color:   $c1 !important;
+  color:   $c2 !important;
+  transition: all .3s  ease-in-out;
 }
 
-.navbar-nav li  :hover{
-  // border-bottom: $c3 solid 1px;
-  transition:  ease-in-out .4s;
-  color:   $c3 !important;
+.nav-link:hover{
+  background-color: $c2;
+   border-radius: 2px;
+  color: $light !important;
 }
+
+nav{
+  background-color: $light!important;
+}
+.navbar-toggler{
+  background-color: $c2 !important;
+}
+.navbar-toggler-icon{
+  color: $c3 !important;
+}
+
