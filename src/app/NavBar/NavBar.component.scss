@@ -8,7 +8,7 @@
 #logo:hover {
   transform: scale(1.2);
   transition:  ease-in-out .8s;
-  filter: brightness(150);
+  // filter: brightness(150);
 }
 
 .nav-item{
@@ -20,13 +20,12 @@
   font-size: 1.5rem;
   font-weight: bold;
   color:   $c2 !important;
-  transition: all .6s  ease;
+  transition: all .4s  ease;
 }
 
 .nav-link:hover{
-  background-color: $c2;
-   border-radius: 2px;
-  color: $light !important;
+  transform: scale(1.2);
+  color: $c4 !important;
 }
 
 nav{
@@ -39,3 +38,9 @@ nav{
   color: $c3 !important;
 }
 
+.active{
+  border-bottom: $c4 solid 2px;
+}
+.dropdown-menu{
+  background-color: $light !important;
+}

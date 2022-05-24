@@ -83,12 +83,12 @@
     scale: 0.5;
     width: 50%;
     margin-top: 20px;
-    transition:  ease-in-out .4s;
+    transition:  ease .4s;
   }
 
   .card:hover{
-    transform: translateY(-10px);
-    transition:  ease-in-out .4s;
+     box-shadow: 0 0 10px $dark;
+    transform: translateY(-5px);
   }
   .card-title{
     font-size: 1.5rem;
@@ -105,7 +105,12 @@
     border-color: $c1;
     font-weight: bold;
     font-size: 1.2rem;
-    transition:  ease-in-out .4s;
+    transition:  ease .4s;
+  }
+  .btn-primary:hover{
+    background-color: $c2;
+    border-color: $c2;
+    color: $c3;
   }
 hr,#abs,.abs{
   width: 100%;
