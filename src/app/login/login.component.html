@@ -1,7 +1,7 @@
 <!-- BootStrapLoginForm -->
 
-<div class="container mt-5">
-  <div class="row" *ngIf="!submitted">
+<div class="container mt-5" *ngIf="!submitted">
+  <div class="row" >
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
@@ -41,5 +41,15 @@
         </div>
       </div>
     </div>
+  </div>
+  
+</div>
+<div class="container mt-5 "*ngIf="submitted">
+  <div class="row" >
+    <div class="h1"> 
+      <h1 class="text-center">Hello<span class="text-primary">{{User.id}}</span> <span class="text-success">Market</span>
+      </h1>
+    </div>
+
   </div>
 </div>

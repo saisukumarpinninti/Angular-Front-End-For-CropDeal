@@ -10,9 +10,10 @@ import { UserauthService } from '../_service/userauth.service';
 })
 export class LoginComponent implements OnInit {
 
-  submitted = false;
+  submitted : Boolean = false;
   loginForm!: FormGroup;
   userForm!: FormGroup;
+  User: any;
   constructor(private f: FormBuilder,
     private userService: UserService,
     private userAuthService: UserauthService,
@@ -25,7 +26,11 @@ export class LoginComponent implements OnInit {
       username: [3, [Validators.required,Validators.pattern('^[1-9]*$')]],
       password: ['s', [Validators.required]]
     });
+
+    this.submitted=this.userAuthService.isLoggedIn();
     
+    this.User = this.userAuthService.getUser();
+    console.log(this.User);
   }
 
   login(loginForm: any) {
@@ -38,6 +43,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         this.userAuthService.setRoles(response.userDetails.role);
         this.userAuthService.setToken(response.jwt);
+        this.userAuthService.setUser(response.userDetails);
         alert('Login Successful');
         const role = this.userAuthService.getRoles();
         if (role === 'ROLE_Farmer') {

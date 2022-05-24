@@ -10,6 +10,13 @@ export class UserauthService {
     localStorage.setItem('roles', roles);
   }
 
+  public setUser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+  public getUser() {
+    return JSON.parse(localStorage.getItem('user')|| '{}');
+  }
+  
   public getRoles(){
     return localStorage.getItem('roles')|| '{}';
   }
@@ -27,6 +34,6 @@ export class UserauthService {
   }
 
   public isLoggedIn() {
-    return this.getRoles() && this.getToken();
+    return localStorage.getItem('jwtToken') !== '{}';
   }
 }
