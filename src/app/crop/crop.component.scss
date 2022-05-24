@@ -8,14 +8,25 @@
 }
 
 .btn-primary{
-    margin-top: -30px;
     background-color: $c1;
+    border-color: $c1;
+    font-weight: bold;
+    font-size: 1rem;
+    transition:  ease-in-out .4s;
+  }
+.btn-outline-secondary{
+    padding-right: 20px;
+    color: $c2 !important;
     border-color: $c1;
     font-weight: bold;
     font-size: 1.2rem;
     transition:  ease-in-out .4s;
   }
-
+  .btn-outline-secondary:hover{
+    color: $light !important;
+    background-color: $c2 !important;
+    transition:  ease-in-out .4s;
+  }
   h2{
     font-family: 'Koulen', cursive;
     font-size: 2rem;

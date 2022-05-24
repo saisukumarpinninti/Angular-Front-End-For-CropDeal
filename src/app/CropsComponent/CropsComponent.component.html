@@ -3,19 +3,22 @@
 
 <!-- Boot Strap Cards -->
 <div class="container-fluid">
-  <div class="row" *ngFor="let crop of crops"  id="crop">
-    <div class="col-sm-4" >
+  <div class="row" >
+    <div class="col-sm-3" *ngFor="let crop of crops"  id="crop">
       <div class="card" >
         <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap" >
         <div class="card-body">
           <h5 class="card-title "><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for {{crop.quantity}} {{crop.type}}s</h5>
             <ul class="card-text text-left">
               <li>Name: {{crop.name}}</li>
-              <li>Quantity: {{crop.quantity}}</li>
-              <li>Cost: {{crop.cost}} per {{crop.type}}</li>
+              <li>Quantity: {{crop.quantity}} {{crop.type}}s</li>
+              <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
             </ul>
+          <a href="#" class="btn btn-outline-secondary border-0" routerLink="/crop/{{crop.id}}">Contact Farmer</a>
+          <span>&nbsp;</span>
           <a href="#" class="btn btn-primary" routerLink="/crop/{{crop.id}}">Buy Crop</a>
         </div>
+        <br>
       </div>
     </div>
     

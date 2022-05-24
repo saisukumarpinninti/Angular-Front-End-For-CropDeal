@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     flex-direction: row; 
-    padding: 0;
     width: 100%;
     height: 100%;
   }
@@ -13,22 +12,28 @@
       flex-direction: column;
     }
   }
-    
+  .btn-outline-secondary{
+    color: $c2 !important;
+    border-color: $c1;
+    transition:  ease-in-out .4s;
+  }
+  .btn-outline-secondary:hover{
+    color: $light !important;
+    background-color: $c2 !important;
+    transition:  ease-in-out .4s;
+  }
   
 .card-img-top{
-  
     width: 100%;
     height: 100px;
     object-fit: cover;
   }
   #crop{
-    margin-left: 20px;
     width: 100%;
     justify-content: space-around;
   }
  
   .card{
-    scale: 0.5;
     margin-top: 10px;
     transition:  ease-in-out .4s;
   }
@@ -38,7 +43,7 @@
     transition:  ease-in-out .4s;
   }
   .card-title{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: koulen;
      color: $c1;
   }
