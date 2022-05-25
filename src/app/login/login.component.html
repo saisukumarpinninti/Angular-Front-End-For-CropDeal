@@ -4,7 +4,17 @@
   <div class="row" >
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
-        <div class="card-body">
+        <div class="card-body " *ngIf="submitted">
+        <div class="h1 text-center"> 
+          <h1 class="text-center">Hello  {{Userrole}} You are alreay Loggedin</h1>
+        </div>
+     <!-- Bootstrap logout button --> 
+        <div class="text-center">
+          <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="logout()">Logout</button>
+        </div>
+        </div>
+        
+        <div class="card-body " *ngIf="!submitted">
           <h1 class="card-title text-center"><i class="fa-solid fa-user"></i></h1>
           <h1 class="card-title text-center">Sign In </h1>
           <form class="form-signin" [formGroup]="loginForm"  (ngSubmit)="login(loginForm)">
@@ -39,20 +49,9 @@
             <small class="text-danger" *ngIf="loginForm.invalid">Please Submit all the deatils.</small>
             <label class="text-danger" *ngIf="loginForm.invalid">{{errorMessage}}</label>
             <button class="btn  btn-outline btn-block" [disabled]="loginForm.valid" type="submit">Register</button>
-            
           </form>
         </div>
       </div>
     </div>
-  </div>
-  
-</div>
-<div class="container mt-5 "*ngIf="submitted">
-  <div class="row" >
-    <div class="h1"> 
-      <h1 class="text-center">Hello  {{Userrole}} You are alreay Loggedin</h1>
-
-    </div>
-
   </div>
 </div>

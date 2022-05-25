@@ -10,7 +10,17 @@
   transition:  ease-in-out .8s;
   // filter: brightness(150);
 }
-
+.dropdown-menu {
+  font-family: 'Odibee Sans', cursive;
+  background-color: $c3 !important;
+}
+.dropdown-menu a {
+  color: $c2 !important;
+}
+.dropdown-menu a:hover {
+  background-color: $c2 !important;
+  color: $light !important;
+}
 .nav-item{
   justify-content: space-between;
 }

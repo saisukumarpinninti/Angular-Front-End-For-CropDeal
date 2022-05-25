@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
     }
 
-    // console.log(this.User);
+
   }
 
     login(loginForm: any) {
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
       username:this.loginForm.value.usertype+this.loginForm.value.username,
       password:this.loginForm.get('password'),
     });
+
     this.userService.login(this.userForm.value).subscribe(
       (response: any) => {
         console.log(response);
@@ -72,6 +73,7 @@ export class LoginComponent implements OnInit {
   
   logout(){
     this.userAuthService.clear();
+    this.submitted=false;
     return  this.router.navigate(['/Home']);
   }
   
