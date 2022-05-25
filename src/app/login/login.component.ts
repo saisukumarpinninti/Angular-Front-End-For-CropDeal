@@ -9,18 +9,17 @@ import { UserauthService } from '../_service/userauth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  submitted : Boolean = false;
+  
   loginForm!: FormGroup;
   userForm!: FormGroup;
   User: any;
   Userrole:any;
   errorMessage:any;
+  submitted:Boolean=false;
   constructor(private f: FormBuilder,
     private userService: UserService,
     private userAuthService: UserauthService,
     private router: Router) { }
-
 
   ngOnInit():void {
     this.loginForm = this.f.group({
@@ -28,24 +27,20 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required,Validators.pattern('^[1-9]*$')]],
       password: ['', [Validators.required]]
     });
-
     //Checking if submitted or not 
     this.submitted=this.userAuthService.isLoggedIn();
-    if(this.submitted){
+    if(this.submitted!=false){
     this.User = this.userAuthService.getUser();
     this.Userrole = this.userAuthService.getRoles().split('_')[1];
     //remove last element in the string
     this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
     }
-
-
   }
 
     login(loginForm: any) {
     this.userForm = this.f.group({
       username:this.loginForm.value.usertype+this.loginForm.value.username,
-      password:this.loginForm.get('password'),
-    });
+      password:this.loginForm.get('password'),});
 
     this.userService.login(this.userForm.value).subscribe(
       (response: any) => {
@@ -53,6 +48,8 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setRoles(response.userDetails.role);
         this.userAuthService.setToken(response.jwt);
         this.userAuthService.setUser(response.userDetails);
+        this.userAuthService.setisLoggedIn(true);
+        location.reload();
         alert('Login Successful');
         const role = this.userAuthService.getRoles();
         if (role === 'ROLE_Farmer') {
@@ -74,9 +71,9 @@ export class LoginComponent implements OnInit {
   logout(){
     this.userAuthService.clear();
     this.submitted=false;
+    this.userAuthService.setisLoggedIn(false);
     return  this.router.navigate(['/Home']);
   }
-  
   get username() {
     return this.loginForm.get('username');
   }
@@ -86,5 +83,6 @@ export class LoginComponent implements OnInit {
   get usertype() {
     return this.loginForm.get('usertype');
   }
+
 
 }

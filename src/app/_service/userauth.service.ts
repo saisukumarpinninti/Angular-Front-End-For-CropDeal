@@ -33,7 +33,17 @@ export class UserauthService {
     localStorage.clear();
   }
 
-  public isLoggedIn() {
+  public setisLoggedIn(Boolean: boolean) {
+    localStorage.setItem('isLoggedIn', Boolean.toString() );
     return localStorage.getItem('jwtToken') !== '{}';
+  }
+  public isLoggedIn(): boolean {
+    const bool = localStorage.getItem('isLoggedIn');
+    if(bool=='true'){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

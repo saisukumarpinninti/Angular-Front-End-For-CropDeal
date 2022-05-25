@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../_service/User.service';
 import { UserauthService } from '../_service/userauth.service';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-NavBar',
   templateUrl: './NavBar.component.html',
@@ -14,7 +15,8 @@ export class NavBarComponent implements OnInit {
   constructor(
     private userService: UserService,
     private userAuthService: UserauthService,
-    private router: Router
+    private router: Router,
+ 
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class NavBarComponent implements OnInit {
   logout(){
     confirm('Are you sure you want to logout?');
     this.userAuthService.clear();
+    this.userAuthService.setisLoggedIn(false);
     this.loggedin=false;
     return  this.router.navigate(['/Home']);
   }
