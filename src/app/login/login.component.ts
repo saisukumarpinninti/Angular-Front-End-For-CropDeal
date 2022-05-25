@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   userForm!: FormGroup;
   User: any;
+  Userrole:any;
+  errorMessage:any;
   constructor(private f: FormBuilder,
     private userService: UserService,
     private userAuthService: UserauthService,
@@ -22,18 +24,24 @@ export class LoginComponent implements OnInit {
 
   ngOnInit():void {
     this.loginForm = this.f.group({
-      usertype: ['F', Validators.required],
-      username: [3, [Validators.required,Validators.pattern('^[1-9]*$')]],
-      password: ['s', [Validators.required]]
+      usertype: ['', Validators.required],
+      username: ['', [Validators.required,Validators.pattern('^[1-9]*$')]],
+      password: ['', [Validators.required]]
     });
 
+    //Checking if submitted or not 
     this.submitted=this.userAuthService.isLoggedIn();
-    
+    if(this.submitted){
     this.User = this.userAuthService.getUser();
-    console.log(this.User);
+    this.Userrole = this.userAuthService.getRoles().split('_')[1];
+    //remove last element in the string
+    this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
+    }
+
+    // console.log(this.User);
   }
 
-  login(loginForm: any) {
+    login(loginForm: any) {
     this.userForm = this.f.group({
       username:this.loginForm.value.usertype+this.loginForm.value.username,
       password:this.loginForm.get('password'),
@@ -55,11 +63,18 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
+        this.errorMessage = error.error.message;
         console.log(error);
       }
     );
   }
 
+  
+  logout(){
+    this.userAuthService.clear();
+    return  this.router.navigate(['/Home']);
+  }
+  
   get username() {
     return this.loginForm.get('username');
   }
