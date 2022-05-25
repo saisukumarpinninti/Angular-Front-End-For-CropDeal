@@ -6,13 +6,14 @@ import { NavBarComponent } from './NavBar/NavBar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CropComponent } from './crop/crop.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './Profile/Profile.component';
 const routes: Routes = [
    { path: 'Home', component: HomeComponent },
    { path: '', pathMatch: 'full', redirectTo: 'Home' },
    { path: 'crops', component: CropsComponentComponent },
     { path: 'crop/:id', component: CropComponent },
-    { path: 'login', component: LoginComponent }
-
+    { path: 'login', component: LoginComponent },
+    {path: 'Profile/:id', component: ProfileComponent}
 ];
 
 @NgModule({
@@ -21,4 +22,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routedComponents = [HomeComponent, CropsComponentComponent, NavBarComponent, FooterComponent,
-  CropComponent, LoginComponent];
+  CropComponent, LoginComponent, ProfileComponent];

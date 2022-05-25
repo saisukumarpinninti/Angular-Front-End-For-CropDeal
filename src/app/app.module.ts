@@ -10,11 +10,10 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     routedComponents,
-    LoginComponent,
-  ],
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
