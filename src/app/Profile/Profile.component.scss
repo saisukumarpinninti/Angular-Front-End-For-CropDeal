@@ -14,18 +14,35 @@ input::-webkit-inner-spin-button {
   align-items:center;
   justify-content: center;
 }
-
+.btn-outline-secondary{
+  color: $c2 !important;
+  border-color: $c1;
+  transition:  ease-in-out .4s;
+}
+.btn-outline-secondary:hover{
+  color: $light !important;
+  background-color: $c2 !important;
+  transition:  ease-in-out .4s;
+}
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 input{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border:none;
   border-bottom:1px solid $c2;
   width:100%;
   margin-bottom:10px;
   font-size:16px;
   background-color:transparent;
+  transition:  ease .4s;
+
+}
+input:focus{
+  background-color: $c3;
+  border-bottom:5px solid $c2;
+  transition:  ease .4s;
 }
 .card{
   width:150%;

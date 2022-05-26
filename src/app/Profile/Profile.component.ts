@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
         password: ['', Validators.required],
         dob: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        mobileNumber: ['', [Validators.required, Validators.pattern('^[1-9]*$')]],
+        mobileNumber: ['', [Validators.required]],
         address: ['', Validators.required],
         paymentInfo:['', Validators.required],
         status: ['', Validators.required]
@@ -84,5 +84,13 @@ patchFarmer(){
       console.log(this.ProfileForm.value);
       // console.log(this.Farmer);
     }
+UpdateFarmer(ProfileForm:any){
+  this.Farmer = this.ProfileForm.value;
+  this.Farmer.id = this.User.id;
+ console.log(this.Farmer);
 
+  this.FarmerService.updateFarmer(this.Farmer).subscribe(
+    data => {this.Farmer = data;this.patchFarmer();},
+    error => {this.errorMessage = error;console.log(this.errorMessage);});
+}
 }

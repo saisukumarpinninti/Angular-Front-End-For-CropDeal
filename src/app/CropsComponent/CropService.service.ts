@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable,throwError as ObservableThrowError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CropInterface } from './CropInterface';
@@ -7,10 +7,14 @@ import { CropInterface } from './CropInterface';
   providedIn: 'root'
 })
 export class CropServiceService {
+  PATH_OF_API = 'http://localhost:9000/api/crop/Crop';
+  requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
+  authenticationHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')});
 
 constructor(private http:HttpClient) { }
+
 getCrops():Observable<CropInterface[]>{
-  return this.http.get<CropInterface[]>('http://localhost:8081/Crop/all')
+  return this.http.get<CropInterface[]>(this.PATH_OF_API+'/Active/all')
   .pipe(catchError(this.handlerError));
 }
 handlerError(error: HttpErrorResponse) {
@@ -19,5 +23,5 @@ handlerError(error: HttpErrorResponse) {
 }
 
 getCrop(id:number):Observable<CropInterface>{
-  return this.http.get<CropInterface>('http://localhost:8081/Crop/'+id).pipe(catchError(this.handlerError));}
+  return this.http.get<CropInterface>(this.PATH_OF_API+'/'+id,{headers:this.authenticationHeader}).pipe(catchError(this.handlerError));}
 }

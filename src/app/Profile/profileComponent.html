@@ -1,15 +1,9 @@
 <div class="container px-4 px-lg-5 my-5">
-    <form class="form-signin" [formGroup]="ProfileForm" *ngIf="Farmer!=null">
+    <form class="form-signin" [formGroup]="ProfileForm" *ngIf="Farmer!=null" autocomplete="on"  (ngSubmit)="UpdateFarmer(ProfileForm)" >
       <div class="card">
         <div class="card-body" >
           <br>
-          <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br>{{Farmer.firstName}} {{Farmer.lastName}}</h1>
-          <!-- (ngSubmit)="login(ProfileForm)" -->
-          <!-- non editable input -->
-          <div class="form-label-group form-group">
-            <label for="id">ID <i class="fa fa-id-badge"></i><span>&nbsp;</span></label>
-            <input type="text" id="ID" class="form-control" placeholder="ID" formControlName="id" [readonly]="true">
-          </div>
+          <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br>{{Farmer.firstName}} {{Farmer.lastName}} ID: <span>  {{Farmer.id}}</span></h1>
           <div class="form-label-group ">
             <label for="firstName">firstName <span>&nbsp;</span></label>
             <input type="text" id="firstName" class="form-control " placeholder="firstName" formControlName="firstName"
@@ -36,9 +30,15 @@
             <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email"
               required>
             <small class="text-danger" *ngIf="email?.errors?.['required'] && email?.touched">email is required</small>
-         
         </div>
-          <br>
+        <div class="form-label-group">
+            <label for="inputPhone">mobileNumber</label>
+            <input type="number" id="inputmobileNumber" class="form-control" placeholder="mobileNumber" formControlName="mobileNumber"
+              required>
+            <small class="text-danger" *ngIf="mobileNumber?.errors?.['required'] && mobileNumber?.touched">mobileNumber is required</small>
+          </div>
+            <br>
+          <button class="btn  btn-outline-secondary btn-block" (click)="patchFarmer()">Reset</button>
           <button class="btn  btn-primary btn-block" [disabled]="ProfileForm.invalid" type="submit">Update</button>
           <small class="text-danger" *ngIf="ProfileForm.invalid">Please Submit all the deatils.</small>
         </div>
