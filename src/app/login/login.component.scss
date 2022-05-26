@@ -1,11 +1,5 @@
 @import "../../assets/scss/colours.scss";
 @import "../../assets/scss/animations.scss";
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
 .card {
   width: 350px;
@@ -16,38 +10,3 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
 }
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-h1{
-  color: $c2;
-  animation: fadeInAnimation ease 3s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  font-family: 'Koulen', cursive;
-  font: 2rem ;
-  font-weight: bold;
-  text-align: center;
-}
-.btn-primary{
-  background-color: $c1;
-  border-color: $c1;
-  font-weight: bold;
-  transition:  ease-in-out .4s;
-}
-  .btn-primary:hover{
-      background-color: $light;
-      color: $c1 !important;
-      border-color: $c4;
-      transition:  ease-in-out .4s;
-  }
-
-.text-danger{
-  color: red !important;
-  font-family: Mukta, sans-serif;
-  font-weight: bold;
-  text-align: center;
-}
-

@@ -1,47 +1,98 @@
-<div class="container px-4 px-lg-5 my-5">
-    <form class="form-signin" [formGroup]="ProfileForm" *ngIf="Farmer!=null" autocomplete="on"  (ngSubmit)="UpdateFarmer(ProfileForm)" >
-      <div class="card">
-        <div class="card-body" >
-          <br>
-          <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br>{{Farmer.firstName}} {{Farmer.lastName}} ID: <span>  {{Farmer.id}}</span></h1>
-          <div class="form-label-group ">
-            <label for="firstName">firstName <span>&nbsp;</span></label>
-            <input type="text" id="firstName" class="form-control " placeholder="firstName" formControlName="firstName"
-              required autofocus>
-            <small class="text-danger " *ngIf="firstName?.errors?.['required'] && firstName?.touched">firstName is
-              required</small>
-          </div>
-          <div class="form-label-group ">
-            <label for="lastName">lastName </label>
-            <input type="text" id="lastName" class="form-control" placeholder="lastName" formControlName="lastName"
-              required autofocus>
-            <small class="text-danger" *ngIf="lastName?.errors?.['required'] && lastName?.touched">lastName is
-              required</small>
-          </div>
-          <div class="form-label-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-              formControlName="password" required>
-            <small class="text-danger" *ngIf="password?.errors?.['required'] && password?.touched">
-              password is required</small>
-          </div>
-          <div class="form-label-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email"
-              required>
-            <small class="text-danger" *ngIf="email?.errors?.['required'] && email?.touched">email is required</small>
-        </div>
-        <div class="form-label-group">
-            <label for="inputPhone">mobileNumber</label>
-            <input type="number" id="inputmobileNumber" class="form-control" placeholder="mobileNumber" formControlName="mobileNumber"
-              required>
-            <small class="text-danger" *ngIf="mobileNumber?.errors?.['required'] && mobileNumber?.touched">mobileNumber is required</small>
-          </div>
+<div class="container ">
+  <div class="row">
+    <!-- bootstrap col for keeping two divs side by side -->
+    <div class="col-md-6">
+      <br>
+      <form class="form-signin" [formGroup]="ProfileForm" (ngSubmit)="UpdateProfile(ProfileForm)" *ngIf="Farmer||Dealer!=null">
+        <div class="card">
+          <div class="card-body">
             <br>
-          <button class="btn  btn-outline-secondary btn-block" (click)="patchFarmer()">Reset</button>
-          <button class="btn  btn-primary btn-block" [disabled]="ProfileForm.invalid" type="submit">Update</button>
-          <small class="text-danger" *ngIf="ProfileForm.invalid">Please Submit all the deatils.</small>
+            <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br> ID:
+              <span> {{Farmer.id}}</span>
+            </h1>
+            <div class="form-label-group ">
+              <label for="firstName">firstName</label>
+              <input type="text" id="firstName" class="form-control " placeholder="firstName"
+                formControlName="firstName" required autofocus>
+              <small class="text-danger " *ngIf="firstName?.errors?.['required'] && firstName?.touched">firstName is
+                required</small>
+              <small class="text-danger " *ngIf="firstName?.errors?.['pattern'] && firstName?.touched">firstName
+                can only be Aplhabets</small>
+            </div>
+            <div class="form-label-group ">
+              <label for="lastName">lastName </label>
+              <input type="text" id="lastName" class="form-control" placeholder="lastName" formControlName="lastName"
+                required autofocus>
+              <small class="text-danger" *ngIf="lastName?.errors?.['required'] && lastName?.touched">lastName is
+                required</small>
+                <small class="text-danger " *ngIf="lastName?.errors?.['pattern'] && lastName?.touched">lastName
+                  can only be Aplhabets</small>
+            </div>
+            <div class="form-label-group">
+              <label for="inputPassword">Password <i class="fa-solid fa-key"></i></label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                formControlName="password" required>
+              <small class="text-danger" *ngIf="password?.errors?.['required'] && password?.touched">
+                password is required</small>
+            </div>
+            <div class="form-label-group">
+              <label for="inputEmail">Email <i class="fa-solid fa-envelope"></i></label>
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email"
+                required>
+              <small class="text-danger" *ngIf="email?.errors?.['required'] && email?.touched">email is required</small>
+              <small class="text-danger" *ngIf="email?.errors?.['email'] && email?.touched">email is invalid</small>
+            </div>
+            <div class="form-label-group">
+              <label for="inputPhone">mobile Number <i class="fa-solid fa-phone"></i></label>
+              <input type="number" id="inputmobileNumber" class="form-control" placeholder="mobileNumber"
+                formControlName="mobileNumber" required>
+              <small class="text-danger"
+                *ngIf="mobileNumber?.errors?.['required'] && mobileNumber?.touched">mobileNumber
+                is required</small>
+            </div>
+          </div>
         </div>
-      </div>
-    </form>
+        <br>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <br>
+      <form class="form-signin" [formGroup]="ProfileForm" *ngIf="Farmer!=null" autocomplete="on"
+        (ngSubmit)="UpdateProfile(ProfileForm)">
+        <div class="card">
+          <div class="card-body">
+            <br>
+            <div class="form-label-group">
+              <label for="address">address <i class="fa-solid fa-map-location-dot"></i></label>
+              <input type="text" id="address" class="form-control " placeholder="address" formControlName="address"
+                required autofocus>
+              <small class="text-danger " *ngIf="address?.errors?.['required'] && address?.touched">address is
+                required</small>
+            </div>
+            <div class="form-label-group ">
+              <label for="paymentInfo">paymentInfo <i class="fa-brands fa-paypal"></i></label>
+              <input type="datetime" id="paymentInfo" class="form-control " placeholder="paymentInfo"
+                formControlName="paymentInfo" required autofocus>
+              <small class="text-danger " *ngIf="paymentInfo?.errors?.['required'] && paymentInfo?.touched">paymentInfo
+                is
+                required</small>
+            </div>
+            <div class="form-label-group ">
+              <label for="status">status <span>&nbsp;</span></label>
+              <input type="text" id="status" class="form-control " placeholder="status" formControlName="status"
+                required autofocus>
+              <small class="text-danger " *ngIf="status?.errors?.['required'] && status?.touched">status is
+                required</small>
+            </div>
+            <br>
+            
+            <button class="btn  btn-outline-secondary btn-block" (click)="patch()">Reset</button>
+            <button class="btn  btn-primary btn-block" [disabled]="ProfileForm.invalid" type="submit">Update</button>
+            <small class="text-danger" *ngIf="ProfileForm.invalid">Please Submit all the deatils.</small>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
+</div>

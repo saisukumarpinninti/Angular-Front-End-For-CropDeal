@@ -9,10 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
-    routedComponents,
+    routedComponents
    ],
   imports: [
     BrowserModule,

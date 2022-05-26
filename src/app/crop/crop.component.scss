@@ -1,43 +1,26 @@
 @import "../../assets/scss/colours.scss";
 #details{
-    width: 20%;
     padding: 10px;
     background-color: $light !important;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-.btn-primary{
-    background-color: $c1;
-    border-color: $c1;
-    font-weight: bold;
-    font-size: 1rem;
-    transition:  ease-in-out .4s;
-  }
-.btn-outline-secondary{
-    padding-right: 20px;
-    color: $c2 !important;
-    border-color: $c1;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition:  ease-in-out .4s;
-  }
-  .btn-outline-secondary:hover{
-    color: $light !important;
-    background-color: $c2 !important;
-    transition:  ease-in-out .4s;
+a{
+    text-decoration: underline;
+    color: $c2;
   }
   h2{
     font-family: 'Koulen', cursive;
     font-size: 2rem;
     color: $c1;
+    text-align: center;
+
   }
-  .btn-primary:hover{
-    background-color: $light;
-    color: $c1;
-    border-color: $c4;
-    transition:  ease-in-out .4s;
-}
+.card-body{
+  border-radius: 4px;
+   background-color: $light !important;
+ }
 .mr-2{
     padding-bottom: 15px;
     font-size: 1rem;

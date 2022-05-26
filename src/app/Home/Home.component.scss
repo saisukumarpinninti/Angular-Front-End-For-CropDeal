@@ -99,19 +99,13 @@
     font-size: 1rem;
     color: $c4;
   }
-  
-  .btn-primary{
-    background-color: $c1;
-    border-color: $c1;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition:  ease .4s;
-  }
+
   .btn-primary:hover{
     background-color: $c2;
     border-color: $c2;
     color: $c3;
   }
+  
 hr,#abs,.abs{
   width: 100%;
   height: 6px;
