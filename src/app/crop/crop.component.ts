@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router ,ActivatedRoute,ParamMap} from '@angular/router';
-import { CropServiceService } from '../CropsComponent/CropService.service';
+import { CropServiceService } from '../_service/CropService.service';
 import { UserauthService } from '../_service/userauth.service';
 import { FarmerService } from '../_service/Farmer.service';
 @Component({
@@ -12,10 +12,11 @@ export class CropComponent implements OnInit {
   errorMessage: any;
   farmercheck=false;
   Farmer: any;
-  public crop:any;
+  crop:any;
   LoggedInUser: any;
-  public _cropid: any ;
-  constructor(private route:ActivatedRoute,
+  _cropid: any ;
+  constructor(
+    private route:ActivatedRoute,
     private r :Router,
     private _cropservice:CropServiceService,
     private userAuthService: UserauthService,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CropServiceService } from './CropService.service';
+import { CropServiceService } from '../_service/CropService.service';
 @Component({
   selector: 'app-CropsComponent',
   templateUrl: './CropsComponent.component.html',

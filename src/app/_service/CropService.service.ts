@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable,throwError as ObservableThrowError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CropInterface } from './CropInterface';
+import { CropInterface } from '../CropsComponent/CropInterface';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,5 +23,11 @@ handlerError(error: HttpErrorResponse) {
 }
 
 getCrop(id:number):Observable<CropInterface>{
-  return this.http.get<CropInterface>(this.PATH_OF_API+'/'+id,{headers:this.authenticationHeader}).pipe(catchError(this.handlerError));}
+  return this.http.get<CropInterface>(this.PATH_OF_API+'/'+id,
+  {headers:this.authenticationHeader}).pipe(catchError(this.handlerError));}
+
+  getFarmerCrops(farmerid:number):Observable<CropInterface[]>{
+  return this.http.get<CropInterface[]>(this.PATH_OF_API+'/farmer/'+farmerid+'/all',
+  {headers:this.authenticationHeader}).pipe(catchError(this.handlerError));}
 }
+

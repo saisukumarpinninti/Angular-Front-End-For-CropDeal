@@ -108,7 +108,12 @@ h1{
   text-align: center;
 }
 
-
+.title{
+  color: $light !important;
+  font-family: Mukta, sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

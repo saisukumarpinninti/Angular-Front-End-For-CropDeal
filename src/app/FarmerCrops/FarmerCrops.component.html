@@ -1,10 +1,9 @@
 <br>
-<h5 class="title text-center">List of all the available crops</h5>
 
-<!-- Boot Strap Cards -->
 <div class="container-fluid">
+<h1 class="title text-center">List of all the crops Posted By {{LoggedInUser.id}}</h1>
   <div class="row" >
-    <div class="col-sm-3" *ngFor="let crop of crops"  id="crop">
+    <div class="col-sm-3" *ngFor="let crop of Crops"  id="crop">
       <div class="card" >
         <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap" >
         <div class="card-body">
@@ -14,7 +13,7 @@
               <li>Quantity: {{crop.quantity}} {{crop.type}}s</li>
               <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
             </ul>
-          <a href="#" class="btn btn-primary btn-block" routerLink="/crop/{{crop.id}}" >Buy Crop</a>
+          <button class="btn btn-primary btn-block" routerLink='/crop/{{crop.id}}' [disabled]="!crop.active">Edit Crop</button>
         </div>
         <br>
       </div>
