@@ -1,0 +1,12 @@
+// #profileimage {
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 0%;
+//   object-fit: cover;
+// }
+//make image circle
+#profileimage {
+  border-radius: 50%;
+  object-fit: cover;
+  clip-path: circle();
+}

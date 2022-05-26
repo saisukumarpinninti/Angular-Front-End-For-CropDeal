@@ -11,10 +11,12 @@ import { FarmerService } from '../_service/Farmer.service';
 })
 export class ProfileComponent implements OnInit {
 
+  LoggedInUser: any;
   ID:any;
-  loginForm!: FormGroup;
+  ProfileForm!: FormGroup;
   userForm!: FormGroup;
   Farmer:any=null;
+  Dealer:any=null;
   User: any;
   Userrole:any;
   errorMessage:any;
@@ -28,13 +30,33 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params:ParamMap)=>{
-      this.ID = <any>params.get('id');});
+    this.LoggedInUser = this.userAuthService.isLoggedIn();
+    if(this.LoggedInUser==true){
+    this.route.paramMap.subscribe((params:ParamMap)=>{this.ID = <any>params.get('id');});
     this.User = this.userAuthService.getUser();
-    this.Userrole = this.userAuthService.getRoles().split('_')[1];
-    this.Farmer=this.FarmerService.getFarmer(this.ID).subscribe(
-      (response: any) => {this.Farmer = response;});
+    if(this.ID!= this.User.id){
+      alert("You are not authorized to view this page");
+      this.router.navigate(['/profile/'+this.User.id]);
     }
+    this.Userrole = this.userAuthService.getRoles().split('_')[1];
+    if(this.Userrole == 'farmer'){
+      this.FarmerService.getFarmer(this.User.id).subscribe(
+        data => {
+          this.Farmer = data;
+          console.log(this.Farmer);
+        },
+        error => {
+          this.errorMessage = error;
+          console.log(this.errorMessage);
+        }
+      );
+    }
+  }
+  else{
+    alert('Please Login');
+    this.router.navigate(['/login']);
+  }
+}
     printFarmer(){
       console.log(this.Farmer);
     }
