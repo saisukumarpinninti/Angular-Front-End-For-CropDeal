@@ -40,13 +40,13 @@ export class FarmerCropsComponent implements OnInit {
           data => { this.Crops = data; },
           error => { this.errorMessage = error; console.log(this.errorMessage); });
         this.CropForm = this.f.group({
-          id: [{ value: '', }],
+          id: [{ value: '' }],
           farmerid: [this.LoggedInUser.id, Validators.required],
-          name: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+          name: ['', [Validators.required, Validators.pattern('^[A-Za-z ]+$')]],
           cost: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-          Quantity: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+          quantity: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
           type: ['', Validators.required],
-          Active: [true, Validators.required]
+          Active: [true]
         });
       }
       else {
@@ -60,6 +60,7 @@ export class FarmerCropsComponent implements OnInit {
       this.r.navigate(['/Home']);
     }
   }
+
   LoadCrop(id: any) {
     this.Crops.forEach((element: any) => {
       if (element.id == id) {
@@ -71,18 +72,19 @@ get id():any {return this.CropForm.get('id');}
 get farmerid():any {return this.CropForm.get('farmerid');}
 get name():any {return this.CropForm.get('name');}
 get cost():any {return this.CropForm.get('cost');}
-get Quantity():any {return this.CropForm.get('Quantity');}
+get quantity():any {return this.CropForm.get('quantity');}
 get type():any {return this.CropForm.get('type');}
 get Active():any {return this.CropForm.get('Active');}
 
   UpdateCrop(id: any) {
     this.LoadCrop(id);
     this.CropForm.controls['id'].setValue(this.Crop.id);
+    this.CropForm.controls['farmerid'].setValue(this.Crop.farmerid);
     this.CropForm.controls['name'].setValue(this.Crop.name);
     this.CropForm.controls['cost'].setValue(this.Crop.cost);
-    this.CropForm.controls['Quantity'].setValue(this.Crop.Quantity);
+    this.CropForm.controls['quantity'].setValue(this.Crop.quantity);
     this.CropForm.controls['type'].setValue(this.Crop.type);
-    this.CropForm.controls['Active'].setValue(this.Crop.Active);
+    this.CropForm.controls['Active'].setValue(true);
     this.openModal();
   }
   AddCrop() {
@@ -90,7 +92,7 @@ get Active():any {return this.CropForm.get('Active');}
     this.CropForm.controls['farmerid'].setValue(this.LoggedInUser.id);
     this.CropForm.controls['name'].setValue("");
     this.CropForm.controls['cost'].setValue("");
-    this.CropForm.controls['Quantity'].setValue("");
+    this.CropForm.controls['quantity'].setValue("");
     this.CropForm.controls['type'].setValue("");
     this.CropForm.controls['Active'].setValue(true);
     this.openModal();
@@ -98,6 +100,7 @@ get Active():any {return this.CropForm.get('Active');}
 
   onSubmit(CropForm: any) {
     if (CropForm.value.id == "new" && (CropForm.valid)) {
+      
       this._cropservice.addCrop(CropForm.value).subscribe(
         data => { this.Crops = data; console.log(this.Crops); },
         error => { this.errorMessage = error; console.log(this.errorMessage); });
@@ -106,7 +109,10 @@ get Active():any {return this.CropForm.get('Active');}
       this.onCloseHandled();
     }
 
-    else if (CropForm.value.id != "new" && CropForm.id != null && CropForm.valid) {
+    else if (CropForm.value.id != "new" && CropForm.valid) {
+      this.CropForm.controls['id'].setValue(this.Crop.id);
+      this.CropForm.controls['farmerid'].setValue(this.Crop.farmerid);
+      this.CropForm.controls['Active'].setValue(true);
       this._cropservice.updateCrop(CropForm.value).subscribe(
         data => { this.Crops = data; console.log(this.Crops); },
         error => { this.errorMessage = error; console.log(this.errorMessage); });

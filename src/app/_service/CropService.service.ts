@@ -34,7 +34,7 @@ getCrop(id:number):Observable<CropInterface>{
   {headers:this.authenticationHeader}).pipe(catchError(this.handlerError));}
 
   addCrop(crop:CropInterface):Observable<CropInterface>{
-    return this.http.post<CropInterface>(this.PATH_OF_API,crop,
+    return this.http.post<CropInterface>(this.PATH_OF_API+'/add',crop,
     {headers:this.authapplicationheader}).pipe(catchError(this.handlerError));}
 
     updateCrop(crop:CropInterface):Observable<CropInterface>{
