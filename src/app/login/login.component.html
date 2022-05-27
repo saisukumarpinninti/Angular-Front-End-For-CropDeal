@@ -1,23 +1,23 @@
 <!-- BootStrapLoginForm -->
 
-<div class="container mt-5" >
-  <div class="row" >
+<div class="container mt-5">
+  <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body " *ngIf="submitted">
-        <div class="h1 text-center"> 
-          <h1 class="text-center">Hello  {{Userrole}} You are alreay Loggedin</h1>
-          <h1 class="text-center">{{errorMessage}}</h1>
-        </div>
-     <!-- Bootstrap logout button --> 
-        <div class="text-center">
-          <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="logout()">Logout</button>
-        </div>
+          <div class="h1 text-center">
+            <h1 class="text-center">Hello {{Userrole}} You are alreay Loggedin</h1>
+            <h1 class="text-center">{{errorMessage}}</h1>
+          </div>
+          <!-- Bootstrap logout button -->
+          <div class="text-center">
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="logout()">Logout</button>
+          </div>
         </div>
         <div class="card-body " *ngIf="!submitted">
           <h1 class="card-title text-center"><i class="fa-solid fa-user"></i></h1>
           <h1 class="card-title text-center">Sign In </h1>
-          <form class="form-signin" [formGroup]="loginForm"  (ngSubmit)="login(loginForm)">
+          <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
             <div class="form-label-group">
               <select class="form-control" formControlName="usertype">
                 <option value="">Select User Type</option>
@@ -29,11 +29,12 @@
             </div>
             <div class="form-label-group">
               <label for="username">ID <i class="fa fa-id-badge"></i></label>
-              <input type="number" id="username" class="form-control" placeholder="ID" formControlName="username" required
-                autofocus>
+              <input type="number" id="username" class="form-control" placeholder="ID" formControlName="username"
+                required autofocus>
               <small class="text-danger" *ngIf="username?.errors?.['required'] && username?.touched">ID is
                 required</small>
-                <small class="text-danger" *ngIf="username?.errors?.['pattern'] && username?.touched">Id should number & Greater than 0</small>
+              <small class="text-danger" *ngIf="username?.errors?.['pattern'] && username?.touched">Id should number &
+                Greater than 0</small>
             </div>
             <br>
             <div class="form-label-group">

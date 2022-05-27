@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router ,ActivatedRoute,ParamMap} from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CropServiceService } from '../_service/CropService.service';
 import { UserauthService } from '../_service/userauth.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -11,91 +11,110 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class FarmerCropsComponent implements OnInit {
 
   isLoggedIn!: boolean;
-  Userrole:any;
-  currentcrops=true;
-  farmercheck=false;
+  Userrole: any;
+  currentcrops = true;
+  farmercheck = false;
   LoggedInUser: any;
-  CropForm:any;
-  Crops:any;
-  Crop:any;
+  CropForm: any;
+  Crops: any;
+  Crop: any;
   errorMessage: any;
   display = "none";
   constructor(
-    private route:ActivatedRoute,
-    private r :Router,
-    private _cropservice:CropServiceService,
+    private route: ActivatedRoute,
+    private r: Router,
+    private _cropservice: CropServiceService,
     private userAuthService: UserauthService,
-    private f : FormBuilder,
+    private f: FormBuilder,
   ) { }
 
   ngOnInit() {
     this.isLoggedIn = this.userAuthService.isLoggedIn();
     if (this.isLoggedIn == true) {
-    this.LoggedInUser = this.userAuthService.getUser();
-    this.Userrole = this.userAuthService.getRoles().split('_')[1];
-    this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
-    if(this.Userrole=="Farmer"){
-      this.farmercheck=true;
-      this._cropservice.getFarmerCrops(this.LoggedInUser.id).subscribe(
-        data => { this.Crops = data;  },
-        error => { this.errorMessage = error; console.log(this.errorMessage); });
-      this.CropForm = this.f.group({
-        id: [{ value: '', disabled: true }],
-        farmerid: [this.LoggedInUser.id, Validators.required],
-        name: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-        cost: ['', Validators.required, Validators.pattern('^[0-9]+$')],
-        Quantity: ['', Validators.required, Validators.pattern('^[0-9]+$')],
-        type: ['', Validators.required],
-        Active: [true, Validators.required],});
+      this.LoggedInUser = this.userAuthService.getUser();
+      this.Userrole = this.userAuthService.getRoles().split('_')[1];
+      this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
+      if (this.Userrole == "Farmer") {
+        this.farmercheck = true;
+        this._cropservice.getFarmerCrops(this.LoggedInUser.id).subscribe(
+          data => { this.Crops = data; },
+          error => { this.errorMessage = error; console.log(this.errorMessage); });
+        this.CropForm = this.f.group({
+          id: [{ value: '', }],
+          farmerid: [this.LoggedInUser.id, Validators.required],
+          name: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+          cost: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+          Quantity: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+          type: ['', Validators.required],
+          Active: [true, Validators.required]
+        });
+      }
+      else {
+        this.farmercheck = false;
+        alert("You are not a farmer");
+        this.r.navigate(['/Home']);
+      }
     }
-    else{
-      this.farmercheck=false;
-      alert("You are not a farmer");
+    else {
+      alert("You are not logged in");
       this.r.navigate(['/Home']);
     }
   }
-  else{
-    alert("You are not logged in");
-    this.r.navigate(['/Home']);
+  LoadCrop(id: any) {
+    this.Crops.forEach((element: any) => {
+      if (element.id == id) {
+        this.Crop = element;
+      }
+    });
   }
-  }
-  LoadCrop(id:any){
-    this.Crops.forEach((element:  any ) => {
-      if(element.id==id){
-        this.Crop=element;
-      }});}
+get id():any {return this.CropForm.get('id');}
+get farmerid():any {return this.CropForm.get('farmerid');}
+get name():any {return this.CropForm.get('name');}
+get cost():any {return this.CropForm.get('cost');}
+get Quantity():any {return this.CropForm.get('Quantity');}
+get type():any {return this.CropForm.get('type');}
+get Active():any {return this.CropForm.get('Active');}
 
-  UpdateCrop(id:any){
-    // this.display = "block";
+  UpdateCrop(id: any) {
     this.LoadCrop(id);
-    console.log(this.Crop);
-    // this.CropForm.controls['id'].setValue(this.Crop.id);
-    // this.CropForm.controls['name'].setValue(this.Crop.name);
-    // this.CropForm.controls['cost'].setValue(this.Crop.cost);
-    // this.CropForm.controls['Quantity'].setValue(this.Crop.Quantity);
-    // this.CropForm.controls['type'].setValue(this.Crop.type);
-    // this.CropForm.controls['Active'].setValue(this.Crop.Active);
-    // this.currentcrops=false;
+    this.CropForm.controls['id'].setValue(this.Crop.id);
+    this.CropForm.controls['name'].setValue(this.Crop.name);
+    this.CropForm.controls['cost'].setValue(this.Crop.cost);
+    this.CropForm.controls['Quantity'].setValue(this.Crop.Quantity);
+    this.CropForm.controls['type'].setValue(this.Crop.type);
+    this.CropForm.controls['Active'].setValue(this.Crop.Active);
+    this.openModal();
   }
-  AddCrop(){  
-    this.CropForm.patchValue({
-      id: '',
-      farmerid: this.LoggedInUser.id,
-      name: '',
-      cost: '',
-      Quantity: '',
-      type: '',
-      Active: true,
-    });}
-  onSubmit(CropForm:any){
-    if(CropForm.valid){
+  AddCrop() {
+    this.CropForm.controls['id'].setValue("new");
+    this.CropForm.controls['farmerid'].setValue(this.LoggedInUser.id);
+    this.CropForm.controls['name'].setValue("");
+    this.CropForm.controls['cost'].setValue("");
+    this.CropForm.controls['Quantity'].setValue("");
+    this.CropForm.controls['type'].setValue("");
+    this.CropForm.controls['Active'].setValue(true);
+    this.openModal();
+  }
+
+  onSubmit(CropForm: any) {
+    if (CropForm.value.id == "new" && (CropForm.valid)) {
       this._cropservice.addCrop(CropForm.value).subscribe(
         data => { this.Crops = data; console.log(this.Crops); },
         error => { this.errorMessage = error; console.log(this.errorMessage); });
       this.CropForm.reset();
-      this.currentcrops=true;
+      this.currentcrops = true;
+      this.onCloseHandled();
     }
-    else{
+
+    else if (CropForm.value.id != "new" && CropForm.id != null && CropForm.valid) {
+      this._cropservice.updateCrop(CropForm.value).subscribe(
+        data => { this.Crops = data; console.log(this.Crops); },
+        error => { this.errorMessage = error; console.log(this.errorMessage); });
+      this.CropForm.reset();
+      this.currentcrops = true;
+      this.onCloseHandled();
+    }
+    else {
       alert("Please fill the form correctly");
     }
   }

@@ -1,7 +1,7 @@
 <br>
 
 <div class="container-fluid">
-  <button type="button" class="btn btn-primary" (click)="openModal()">
+  <button type="button" class="btn btn-primary" (click)="AddCrop()">
     + Add New Crop </button>
   <span>&nbsp;</span>
   <button type="button" class="btn btn-primary" (click)="currentcrops=false"> view All Crops </button>
@@ -31,7 +31,7 @@
   <div class="row" *ngIf="!currentcrops">
     <h1 class="title text-center">List of All Crops Posted By {{LoggedInUser.id}}</h1>
     <div class="col-sm-2" *ngFor="let crop of Crops" id="crop">
-      <div class="card" >
+      <div class="card">
         <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title "><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for
@@ -41,7 +41,7 @@
             <li>Quantity: {{crop.quantity}} {{crop.type}}s</li>
             <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
           </ul>
-          <button class="btn btn-primary btn-block" routerLink='/crop/{{crop.id}}' *ngIf="crop.active" [disabled]="!crop.active">Edit
+          <button class="btn btn-primary btn-block" *ngIf="crop.active" [disabled]="!crop.active">Edit
             Crop</button>
         </div>
         <br>
@@ -50,22 +50,51 @@
   </div>
   <!-- For adding a new crop -->
 
-<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Model Title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
-            aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <p>Model body text</p>
+  <div class="modal " tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Crop</h4>
+          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form class="form-signin" [formGroup]="CropForm" (ngSubmit)="UpdateCrop(CropForm)" *ngIf="Crop!=null">
+            <div class="card">
+              <div class="card-body">
+                <br>
+                <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br> ID:<span> {{id.value}}</span></h1>
+                <div class="form-label-group ">
+                  <label for="name">name</label>
+                  <input type="text" id="name" class="form-control " placeholder="name" formControlName="name" required autofocus>
+                  <small class="text-danger " *ngIf="name?.errors?.['required'] && name?.touched">name is required</small>
+                  <small class="text-danger " *ngIf="name?.errors?.['pattern'] && name?.touched">name can only be Aplhabets</small>
+                </div>
+                <div class="form-label-group ">
+                  <label for="cost">cost </label>
+                  <input type="text" id="cost" class="form-control" placeholder="cost" formControlName="cost" required autofocus>
+                  <small class="text-danger" *ngIf="cost?.errors?.['required'] && cost?.touched">cost is required</small>
+                  <small class="text-danger " *ngIf="cost?.errors?.['pattern'] && cost?.touched">cost can only be number</small>
+                </div>
+                <div class="form-label-group">
+                  <label for="inputQuantity">Quantity <i class="fa-solid fa-envelope"></i></label>
+                  <input type="Quantity" id="inputQuantity" class="form-control" placeholder="Quantity" formControlName="Quantity" required>
+                  <small class="text-danger" *ngIf="Quantity?.errors?.['required'] && Quantity?.touched">Quantity is required</small>
+                  <small class="text-danger" *ngIf="Quantity?.errors?.['pattern'] && Quantity?.touched">Quantity isinvalid</small>
+                </div>
+                <!-- dropdown menu -->
+                <button class="btn  btn-primary btn-block" [disabled]="CropForm.invalid" type="submit">Add</button>
+                <button class="btn  btn-primary btn-block" [disabled]="CropForm.invalid" type="submit">Update</button>
+                <small class="text-danger" *ngIf="CropForm.invalid">Please Submit all the deatils.</small>
+              </div>
+            </div>
+            <br>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
       </div>
     </div>
   </div>
-</div>
-<br>
 </div>
