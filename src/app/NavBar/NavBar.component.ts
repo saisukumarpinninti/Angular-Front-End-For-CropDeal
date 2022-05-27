@@ -12,6 +12,8 @@ export class NavBarComponent implements OnInit {
 
   loggedin : Boolean = false;
   User: any;
+  Userrole!: string;
+  isFarmer!: boolean;
   constructor(
     private userService: UserService,
     private userAuthService: UserauthService,
@@ -23,6 +25,11 @@ export class NavBarComponent implements OnInit {
     this.loggedin=this.userAuthService.isLoggedIn();
     if(this.loggedin){
     this.User = this.userAuthService.getUser();
+    this.Userrole = this.userAuthService.getRoles().split('_')[1];
+    this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
+    if(this.Userrole=="Farmer"){
+      this.isFarmer=true;
+    }
   }
     
   }

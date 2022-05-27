@@ -1,21 +1,20 @@
-import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UserauthService } from '../_service/userauth.service';
 import { FarmerService } from '../_service/Farmer.service';
+import { DealerService } from '../_service/Dealer.service';
 @Component({
   selector: 'app-Profile',
   templateUrl: './ProfileComponent.html',
   styleUrls: ['./Profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  
   LoggedInUser: any;
   ID: any;
   ProfileForm!: FormGroup;
   userForm!: FormGroup;
-  Farmer: any;
-  Dealer: any;
+  Profile: any;
   User: any;
   Userrole: any;
   errorMessage: any;
@@ -24,7 +23,8 @@ export class ProfileComponent implements OnInit {
     private userAuthService: UserauthService,
     private route: ActivatedRoute,
     private router: Router,
-    private FarmerService: FarmerService
+    private FarmerService: FarmerService,
+    private DealerService: DealerService
   ) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
       this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
       if (this.Userrole == 'Farmer') {
         this.FarmerService.getFarmer(this.User.id).subscribe(
-          data => { this.Farmer = data; this.patch(); },
+          data => { this.Profile = data; this.patch(); },
           error => { this.errorMessage = error; console.log(this.errorMessage); });
         this.ProfileForm = this.f.group({
           id: [{ value: '', disabled: true }, Validators.required],
@@ -52,24 +52,24 @@ export class ProfileComponent implements OnInit {
           status: ['', Validators.required]
         });
       }
-      // else if (this.Userrole == 'Dealer') {
-      //   this.DealerService.getDealer(this.User.id).subscribe(
-      //     data => { this.Dealer = data; this.patch(); },
-      //     error => { this.errorMessage = error; console.log(this.errorMessage); });
-      //   this.ProfileForm = this.f.group({
-      //     id: [{ value: '', disabled: true }, Validators.required],
-      //     firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-      //     lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-      //     password: ['', Validators.required],
-      //     dob: ['', Validators.required],
-      //     email: ['', [Validators.required, Validators.email]],
-      //     mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      //     address: ['', Validators.required],
-      //     paymentInfo: ['', Validators.required],
-      //     status: ['', Validators.required],
-      //     Addons: ['', Validators.required]
-      //   });
-      // }
+      else if (this.Userrole == 'Dealer') {
+        this.DealerService.getDealer(this.User.id).subscribe(
+          data => { this.Profile = data; this.patch(); console.log(this.Profile); },
+          error => { this.errorMessage = error; console.log(this.errorMessage); });
+        this.ProfileForm = this.f.group({
+          id: [{ value: '', disabled: true }, Validators.required],
+          firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+          lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+          password: ['', Validators.required],
+          dob: ['', Validators.required],
+          email: ['', [Validators.required, Validators.email]],
+          mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+          address: ['', Validators.required],
+          paymentInfo: ['', Validators.required],
+          status: ['', Validators.required],
+          Addons: ['']
+        });
+      }
     }
     else {
       alert('Please Login');
@@ -87,60 +87,62 @@ export class ProfileComponent implements OnInit {
   get dob() { return this.ProfileForm.get('dob'); }
   get paymentInfo() { return this.ProfileForm.get('paymentInfo'); }
   patch() {
-    if(this.Userrole == 'Farmer'){
-    this.ProfileForm.patchValue({
-      id: this.Farmer.id,
-      firstName: this.Farmer.firstName,
-      lastName: this.Farmer.lastName,
-      email: this.Farmer.email,
-      mobileNumber: this.Farmer.mobileNumber,
-      address: this.Farmer.address,
-      dob: this.Farmer.dob,
-      paymentInfo: this.Farmer.paymentInfo,
-      status: this.Farmer.status,
-    });}
-    // else if(this.Userrole == 'Dealer'){
-      // this.ProfileForm.patchValue({
-        //     id: this.Dealer.id,
-        //     firstName: this.Dealer.firstName,
-        //     lastName: this.Dealer.lastName,
-        //     email: this.Dealer.email,
-        //     mobileNumber: this.Dealer.mobileNumber,
-        //     address: this.Dealer.address,
-        //     dob: this.Dealer.dob,
-        //     paymentInfo: this.Dealer.paymentInfo,
-        //     status: this.Dealer.status,
-        //     Addons: this.Dealer.Addons
-        //   });
-    // }
+    if (this.Userrole == 'Farmer') {
+      this.ProfileForm.patchValue({
+        id: this.Profile.id,
+        firstName: this.Profile.firstName,
+        lastName: this.Profile.lastName,
+        email: this.Profile.email,
+        mobileNumber: this.Profile.mobileNumber,
+        address: this.Profile.address,
+        dob: this.Profile.dob,
+        paymentInfo: this.Profile.paymentInfo,
+        status: this.Profile.status,
+      });
+    }
+    else if (this.Userrole == 'Dealer') {
+      this.ProfileForm.patchValue({
+        id: this.Profile.id,
+        firstName: this.Profile.firstName,
+        lastName: this.Profile.lastName,
+        email: this.Profile.email,
+        mobileNumber: this.Profile.mobileNumber,
+        address: this.Profile.address,
+        dob: this.Profile.dob,
+        paymentInfo: this.Profile.paymentInfo,
+        status: this.Profile.status,
+        Addons: this.Profile.Addons
+      });
+    }
   }
   UpdateProfile(ProfileForm: any) {
     if (confirm('Are you sure you want to update ?')) {
-      if(this.Userrole=='Farmer'){
-        this.Farmer = this.ProfileForm.value;
-        this.Farmer.id = this.User.id;
-  
-        this.FarmerService.updateFarmer(this.Farmer).subscribe(
+      if (this.Userrole == 'Farmer') {
+        this.Profile = this.ProfileForm.value;
+        this.Profile.id = this.User.id;
+        this.FarmerService.updateFarmer(this.Profile).subscribe(
           data => {
-            this.Farmer = data; this.patch();
+            this.Profile = data; this.patch();
             alert('Profile Updated Successfully');
           },
           error => { this.errorMessage = error; console.log(this.errorMessage); });
       }
-      // else if(this.Userrole=='Dealer'){
-      //   this.Dealer = this.ProfileForm.value;
-      //   this.Dealer.id = this.User.id;
-      //   this.DealerService.updateDealer(this.Dealer).subscribe(
-      //     data => {
-      //       this.Dealer = data; this.patch();
-      //       alert('Profile Updated Successfully');
-      //     },
-    }
-    else {
-      alert('Profile not updated');
+      else if (this.Userrole == 'Dealer') {
+        this.Profile = this.ProfileForm.value;
+        this.Profile.id = this.User.id;
+        this.DealerService.updateDealer(this.Profile).subscribe(
+          data => {
+            this.Profile = data; this.patch();
+            alert('Profile Updated Successfully');
+          }, error => { this.errorMessage = error; console.log(this.errorMessage); });
+      }
+      else {
+        alert('Profile not updated');
+      }
     }
   }
 
 }
+
 
 

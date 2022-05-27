@@ -3,12 +3,12 @@
     <!-- bootstrap col for keeping two divs side by side -->
     <div class="col-md-6">
       <br>
-      <form class="form-signin" [formGroup]="ProfileForm" (ngSubmit)="UpdateProfile(ProfileForm)" *ngIf="Farmer||Dealer!=null">
+      <form class="form-signin" [formGroup]="ProfileForm" (ngSubmit)="UpdateProfile(ProfileForm)" *ngIf="Profile!=null">
         <div class="card">
           <div class="card-body">
             <br>
             <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br> ID:
-              <span> {{Farmer.id}}</span>
+              <span> {{Profile.id}}</span>
             </h1>
             <div class="form-label-group ">
               <label for="firstName">firstName</label>
@@ -55,10 +55,9 @@
         <br>
       </form>
     </div>
-
     <div class="col-md-6">
       <br>
-      <form class="form-signin" [formGroup]="ProfileForm" *ngIf="Farmer!=null" autocomplete="on"
+      <form class="form-signin" [formGroup]="ProfileForm" *ngIf="Profile!=null" autocomplete="on"
         (ngSubmit)="UpdateProfile(ProfileForm)">
         <div class="card">
           <div class="card-body">
@@ -95,4 +94,5 @@
       </form>
     </div>
   </div>
+
 </div>

@@ -9,7 +9,10 @@ import { CropInterface } from '../CropsComponent/CropInterface';
 export class CropServiceService {
   PATH_OF_API = 'http://localhost:9000/api/crop/Crop';
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
+  applicationHeader = new HttpHeaders({'Content-Type': 'application/json'});
+  
   authenticationHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')});
+  authapplicationheader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),'Content-Type': 'application/json'});
 
 constructor(private http:HttpClient) { }
 
@@ -29,5 +32,13 @@ getCrop(id:number):Observable<CropInterface>{
   getFarmerCrops(farmerid:number):Observable<CropInterface[]>{
   return this.http.get<CropInterface[]>(this.PATH_OF_API+'/farmer/'+farmerid+'/all',
   {headers:this.authenticationHeader}).pipe(catchError(this.handlerError));}
+
+  addCrop(crop:CropInterface):Observable<CropInterface>{
+    return this.http.post<CropInterface>(this.PATH_OF_API,crop,
+    {headers:this.authapplicationheader}).pipe(catchError(this.handlerError));}
+
+    updateCrop(crop:CropInterface):Observable<CropInterface>{
+      return this.http.put<CropInterface>(this.PATH_OF_API+'/update',crop,
+      {headers:this.authapplicationheader}).pipe(catchError(this.handlerError));}
 }
 

@@ -12,7 +12,7 @@
             class="fa-solid fa-house"></i>Home</a></li>
       <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/crops']"><i
             class="fa-solid fa-cart-shopping"></i>Buy Crops</a></li>
-      <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['sell']"><i
+      <li class="nav-item"><a class="nav-link" *ngIf="isFarmer"  [routerLinkActive]="['active']" [routerLink]="['sell']"><i
             class="fa-solid fa-store"></i>Sell Crops</a></li>
       <li class="nav-item" *ngIf="!loggedin"><a class="nav-link " [routerLinkActive]="['active']"
           [routerLink]="['/login']"><i class="fa-solid fa-circle-user"></i></a></li>
