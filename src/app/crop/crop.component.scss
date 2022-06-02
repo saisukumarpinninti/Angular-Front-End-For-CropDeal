@@ -1,36 +1,42 @@
 @import "../../assets/scss/colours.scss";
-#details{
-    padding: 10px;
-    background-color: $light !important;
-    border-radius: 5px;
-    margin-bottom: 10px;
+
+#details {
+  padding: 10px;
+  background-color: $light  !important;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-a{
-    text-decoration: underline;
-    color: $c2;
-  }
-  h2{
-    font-family: 'Koulen', cursive;
-    font-size: 2rem;
-    color: $c1;
-    text-align: center;
+a {
+  text-decoration: underline;
+  color: $c2;
+}
 
-  }
-.card-body{
+h2 {
+  font-family: 'Koulen', cursive;
+  font-size: 2rem;
+  color: $c1;
+  text-align: center;
+
+}
+
+.card-body {
   border-radius: 4px;
-   background-color: $light !important;
- }
-.mr-2{
-    padding-bottom: 15px;
-    font-size: 1rem;
-    color: $dark;
+  background-color: $light  !important;
 }
-b{
-    color: $c2;
+
+.mr-2 {
+  padding-bottom: 15px;
+  font-size: 1rem;
+  color: $dark;
 }
-img{
-    width: 70%;
-    height: 70%;
-    object-fit: cover;
+
+b {
+  color: $c2;
+}
+
+img {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
 }

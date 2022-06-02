@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserauthService {
-  constructor() {}
+  constructor() { }
 
   public setRoles(roles: any) {
     localStorage.setItem('roles', roles);
@@ -14,11 +14,11 @@ export class UserauthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
   public getUser() {
-    return JSON.parse(localStorage.getItem('user')|| '{}');
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
-  
-  public getRoles(){
-    return localStorage.getItem('roles')|| '{}';
+
+  public getRoles() {
+    return localStorage.getItem('roles') || '{}';
   }
 
   public setToken(jwtToken: string) {
@@ -26,7 +26,7 @@ export class UserauthService {
   }
 
   public getToken(): string {
-    return localStorage.getItem('jwtToken')|| '{}';
+    return localStorage.getItem('jwtToken') || '{}';
   }
 
   public clear() {
@@ -34,15 +34,15 @@ export class UserauthService {
   }
 
   public setisLoggedIn(Boolean: boolean) {
-    localStorage.setItem('isLoggedIn', Boolean.toString() );
+    localStorage.setItem('isLoggedIn', Boolean.toString());
     return localStorage.getItem('jwtToken') !== '{}';
   }
   public isLoggedIn(): boolean {
     const bool = localStorage.getItem('isLoggedIn');
-    if(bool=='true'){
+    if (bool == 'true') {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }

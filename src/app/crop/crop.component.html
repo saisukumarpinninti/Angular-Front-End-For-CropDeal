@@ -1,4 +1,4 @@
-<div class="container " >
+<div class="container ">
   <br>
   <div class="row align-items-center">
     <div class="col-md-6">
@@ -10,12 +10,12 @@
       <h1 class="title text-center">Details of the Crop</h1>
       <h1 class="display-5 fw-bolder"> {{crop.name}}</h1>
       <div class="fs-5 mb-5">
-      <div class="medium mb-1">Crop ID : <b>C{{crop.id}}</b></div>
-        <span class="mr-2">Price  per 1 {{crop.type}} : <b>{{crop.cost}}</b></span>
+        <div class="medium mb-1">Crop ID : <b>C{{crop.id}}</b></div>
+        <span class="mr-2">Price per 1 {{crop.type}} : <b>{{crop.cost}}</b></span>
         <br>
-        <span class="mr-2">Quantity Avalabile  : <b>{{crop.quantity}}  {{crop.type}}s</b></span>
+        <span class="mr-2">Quantity Avalabile : <b>{{crop.quantity}} {{crop.type}}s</b></span>
         <br>
-        <span class="mr-2">Total Price  : <b>{{crop.cost*crop.quantity}}</b></span>
+        <span class="mr-2">Total Price : <b>{{crop.cost*crop.quantity}}</b></span>
         <br>
       </div>
       <div class="d-flex">
@@ -25,19 +25,19 @@
       </div>
     </div>
     <div class="col-md-3" *ngIf="Farmer!=null&&farmercheck">
-        <div class="card-body">
-        <h2 class="title text-center" >Farmer Details</h2>
-          <span class="mr-2">Name : <b>{{Farmer.firstName}} {{Farmer.lastName}}</b></span><br>
-          <span class="mr-2">Address : <b>{{Farmer.address}}</b></span><br>
-          <span class="mr-2">Phone: <b><a href="tel:{{Farmer.mobileNumber}}" >{{Farmer.mobileNumber}}</a></b></span><br>
-          <span class="mr-2">Email<i class="fa-solid fa-envelope"></i> : <b>
+      <div class="card-body">
+        <h2 class="title text-center">Farmer Details</h2>
+        <span class="mr-2">Name : <b>{{Farmer.firstName}} {{Farmer.lastName}}</b></span><br>
+        <span class="mr-2">Address : <b>{{Farmer.address}}</b></span><br>
+        <span class="mr-2">Phone: <b><a href="tel:{{Farmer.mobileNumber}}">{{Farmer.mobileNumber}}</a></b></span><br>
+        <span class="mr-2">Email<i class="fa-solid fa-envelope"></i> : <b>
             <a href="mailto:{{Farmer.email}}?subject= Interested in Purchasing of Crop {{crop.name}} with ID :
              {{crop.id}}&body=Hi, I am Intrested in Purchasing your crop {{crop.name}} with ID : {{crop.id}} can you please te
              ll me an appointment date and time?">{{Farmer.email}}</a></b></span><br>
-            
-        </div>
+
       </div>
     </div>
-    
-<br>
+  </div>
+
+  <br>
 </div>

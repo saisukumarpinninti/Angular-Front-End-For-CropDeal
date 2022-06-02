@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
   <br>
   <button type="button" class="btn btn-primary" (click)="AddCrop()">
@@ -9,24 +8,24 @@
   <button type="button" class="btn btn-outline-secondary" (click)="currentcrops=true"> view Current Crops </button>
   <!-- For Displaying current Crops -->
   <h1 class="text-center" *ngIf="currentcrops">List of Active Crops Posted By {{LoggedInUser.id}}</h1>
-  <div class="row" *ngIf="currentcrops" >
-    <div class="col-sm-2" id="crop" *ngFor="let crop of Crops" >
+  <div class="row" *ngIf="currentcrops">
+    <div class="col-sm-2" id="crop" *ngFor="let crop of Crops">
       <div *ngIf="crop.active">
-      <div class="card">
-        <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for
-            {{crop.quantity}} {{crop.type}}s</h5>
-          <ul class="card-text text-left">
-            <li>Name: {{crop.name}}</li>
-            <li>quantity: {{crop.quantity}} {{crop.type}}</li>
-            <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
-          </ul>
-          <button class="btn btn-primary btn-block" (click)="UpdateCrop(crop.id)" >Edit
-            Crop</button>
+        <div class="card">
+          <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for
+              {{crop.quantity}} {{crop.type}}s</h5>
+            <ul class="card-text text-left">
+              <li>Name: {{crop.name}}</li>
+              <li>quantity: {{crop.quantity}} {{crop.type}}</li>
+              <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
+            </ul>
+            <button class="btn btn-primary btn-block" (click)="UpdateCrop(crop.id)">Edit
+              Crop</button>
+          </div>
+          <br>
         </div>
-        <br>
-      </div>
       </div>
     </div>
   </div>
@@ -64,28 +63,37 @@
               aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <form class="form-signin" [formGroup]="CropForm" (ngSubmit)="onSubmit(CropForm)" >
+          <form class="form-signin" [formGroup]="CropForm" (ngSubmit)="onSubmit(CropForm)">
             <div class="card">
               <div class="card-body">
                 <br>
                 <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br> ID:<span> {{id.value}}</span></h1>
                 <div class="form-label-group ">
                   <label for="name">name</label>
-                  <input type="text" id="name" class="form-control " placeholder="name" formControlName="name" required autofocus>
-                  <small class="text-danger " *ngIf="name?.errors?.['required'] && name?.touched">name is required</small>
-                  <small class="text-danger " *ngIf="name?.errors?.['pattern'] && name?.touched">name can only be Aplhabets</small>
+                  <input type="text" id="name" class="form-control " placeholder="name" formControlName="name" required
+                    autofocus>
+                  <small class="text-danger " *ngIf="name?.errors?.['required'] && name?.touched">name is
+                    required</small>
+                  <small class="text-danger " *ngIf="name?.errors?.['pattern'] && name?.touched">name can only be
+                    Aplhabets</small>
                 </div>
                 <div class="form-label-group ">
                   <label for="cost">cost per 1 </label>
-                  <input type="text" id="cost" class="form-control" placeholder="cost" formControlName="cost" required autofocus>
-                  <small class="text-danger" *ngIf="cost?.errors?.['required'] && cost?.touched">cost is required</small>
-                  <small class="text-danger " *ngIf="cost?.errors?.['pattern'] && cost?.touched">cost can only be number</small>
+                  <input type="text" id="cost" class="form-control" placeholder="cost" formControlName="cost" required
+                    autofocus>
+                  <small class="text-danger" *ngIf="cost?.errors?.['required'] && cost?.touched">cost is
+                    required</small>
+                  <small class="text-danger " *ngIf="cost?.errors?.['pattern'] && cost?.touched">cost can only be
+                    number</small>
                 </div>
                 <div class="form-label-group">
                   <label for="inputquantity">quantity of the crop Avaliable</label>
-                  <input type="quantity" id="inputquantity" class="form-control" placeholder="quantity" formControlName="quantity" required>
-                  <small class="text-danger" *ngIf="quantity?.errors?.['required'] && quantity?.touched">quantity is required</small>
-                  <small class="text-danger" *ngIf="quantity?.errors?.['pattern'] && quantity?.touched">quantity isinvalid</small>
+                  <input type="quantity" id="inputquantity" class="form-control" placeholder="quantity"
+                    formControlName="quantity" required>
+                  <small class="text-danger" *ngIf="quantity?.errors?.['required'] && quantity?.touched">quantity is
+                    required</small>
+                  <small class="text-danger" *ngIf="quantity?.errors?.['pattern'] && quantity?.touched">quantity
+                    isinvalid</small>
                 </div>
                 <div class="form-label-group">
                   <label for="type">Type of the quantity</label>
@@ -96,10 +104,12 @@
                       <option value="pcs">Pieces</option>
                     </select>
                   </div>
-                  <small class="text-danger" *ngIf="type?.errors?.['required'] && type?.touched">Type is required</small>
+                  <small class="text-danger" *ngIf="type?.errors?.['required'] && type?.touched">Type is
+                    required</small>
                 </div>
-                  <!-- dropdown menu -->
-                <button class="btn  btn-primary btn-block" [disabled]="CropForm.invalid"  type="submit">Add/Update</button>
+                <!-- dropdown menu -->
+                <button class="btn  btn-primary btn-block" [disabled]="CropForm.invalid"
+                  type="submit">Add/Update</button>
                 <small class="text-danger" *ngIf="CropForm.invalid">Please Submit all the deatils.</small>
               </div>
             </div>

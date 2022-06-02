@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup ,FormBuilder,Validators} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../_service/User.service';
 import { UserauthService } from '../_service/userauth.service';
@@ -10,38 +10,39 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  
+
   loginForm!: FormGroup;
   userForm!: FormGroup;
   User: any;
-  Userrole:any;
-  errorMessage:any;
-  submitted:Boolean=false;
+  Userrole: any;
+  errorMessage: any;
+  submitted: Boolean = false;
   constructor(private f: FormBuilder,
     private userService: UserService,
     private userAuthService: UserauthService,
     private router: Router) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.loginForm = this.f.group({
       usertype: ['', Validators.required],
-      username: ['', [Validators.required,Validators.pattern('^[1-9]*$')]],
+      username: ['', [Validators.required, Validators.pattern('^[1-9]*$')]],
       password: ['', [Validators.required]]
     });
     //Checking if submitted or not 
-    this.submitted=this.userAuthService.isLoggedIn();
-    if(this.submitted!=false){
-    this.User = this.userAuthService.getUser();
-    this.Userrole = this.userAuthService.getRoles().split('_')[1];
-    //remove last element in the string
-    this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
+    this.submitted = this.userAuthService.isLoggedIn();
+    if (this.submitted != false) {
+      this.User = this.userAuthService.getUser();
+      this.Userrole = this.userAuthService.getRoles().split('_')[1];
+      //remove last element in the string
+      this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
     }
   }
 
-    login(loginForm: any) {
+  login(loginForm: any) {
     this.userForm = this.f.group({
-      username:this.loginForm.value.usertype+this.loginForm.value.username,
-      password:this.loginForm.get('password'),});
+      username: this.loginForm.value.usertype + this.loginForm.value.username,
+      password: this.loginForm.get('password'),
+    });
 
     this.userService.login(this.userForm.value).subscribe(
       (response: any) => {
@@ -50,16 +51,17 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setToken(response.jwt);
         this.userAuthService.setUser(response.userDetails);
         this.userAuthService.setisLoggedIn(true);
-        location.reload();
         Swal.fire('Login Successful');
         const role = this.userAuthService.getRoles();
         if (role === 'ROLE_Farmer') {
           this.router.navigate(['/Home']);
         } else if (role === 'ROLE_Dealer') {
-          this.router.navigate(['/crops']);}
-        else  {
+          this.router.navigate(['/crops']);
+        }
+        else {
           this.router.navigate(['/Home']);
         }
+        location.reload();
       },
       (error) => {
         this.errorMessage = error.error.message;
@@ -73,8 +75,26 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  
-  logout(){
+  Register() {
+    Swal.fire({
+      title: 'Register As',
+      text: "Please Select Your Role",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Farmer',
+      cancelButtonText: 'Dealer'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/addUser/Farmer']);
+      } else {
+        this.router.navigate(['/addUser/Dealer']);
+      }
+    })
+  }
+
+  logout() {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't  to Logout!",
@@ -91,11 +111,11 @@ export class LoginComponent implements OnInit {
           'success'
         )
         this.userAuthService.clear();
-        this.submitted=false;
+        this.submitted = false;
         this.userAuthService.setisLoggedIn(false);
       }
     })
-    return  this.router.navigate(['/']);
+    return this.router.navigate(['/']);
   }
   get username() {
     return this.loginForm.get('username');

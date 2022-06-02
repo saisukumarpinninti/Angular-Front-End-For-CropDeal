@@ -4,28 +4,28 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DealerService {
-  
+
   PATH_OF_API = 'http://localhost:9000/api/dealer/Dealer';
 
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
-  applicationHeader = new HttpHeaders({'Content-Type': 'application/json'});
-  
-  authenticationHeader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')});
-  authapplicationheader = new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),'Content-Type': 'application/json'});
+  applicationHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  authenticationHeader = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken') });
+  authapplicationheader = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'), 'Content-Type': 'application/json' });
   constructor(
     private httpclient: HttpClient,
-  ) {}
+  ) { }
 
   public getDealer(ID: any) {
- 
-    return this.httpclient.get(this.PATH_OF_API + '/'+ID, {headers: this.authenticationHeader});
+
+    return this.httpclient.get(this.PATH_OF_API + '/' + ID, { headers: this.authenticationHeader });
   }
 
   public addDealer(Dealer: any) {
-    return this.httpclient.post(this.PATH_OF_API+'/add', Dealer, {headers: this.applicationHeader});
+    return this.httpclient.post(this.PATH_OF_API + '/add', Dealer, { headers: this.applicationHeader });
   }
   public updateDealer(Dealer: any) {
-    return this.httpclient.put(this.PATH_OF_API + '/update', Dealer, {headers: this.authapplicationheader});
+    return this.httpclient.put(this.PATH_OF_API + '/update', Dealer, { headers: this.authapplicationheader });
   }
 
 }

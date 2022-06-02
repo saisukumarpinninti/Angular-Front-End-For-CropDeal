@@ -11,30 +11,34 @@ import Swal from 'sweetalert2';
 })
 export class NavBarComponent implements OnInit {
 
-  loggedin : Boolean = false;
+  loggedin: Boolean = false;
   User: any;
   Userrole!: string;
   isFarmer!: boolean;
+  isAdmin!: boolean;
   constructor(
     private userService: UserService,
     private userAuthService: UserauthService,
     private router: Router,
- 
+
   ) { }
 
   ngOnInit() {
-    this.loggedin=this.userAuthService.isLoggedIn();
-    if(this.loggedin){
-    this.User = this.userAuthService.getUser();
-    this.Userrole = this.userAuthService.getRoles().split('_')[1];
-    this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
-    if(this.Userrole=="Farmer"){
-      this.isFarmer=true;
+    this.loggedin = this.userAuthService.isLoggedIn();
+    if (this.loggedin) {
+      this.User = this.userAuthService.getUser();
+      this.Userrole = this.userAuthService.getRoles().split('_')[1];
+      this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
+      if (this.Userrole == "Farmer") {
+        this.isFarmer = true;
+      }
+      if (this.Userrole == "Admin") {
+        this.isAdmin = true;
+      }
     }
+
   }
-    
-  }
-  logout(){
+  logout() {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't  to Logout!",
@@ -52,10 +56,10 @@ export class NavBarComponent implements OnInit {
         )
         this.userAuthService.clear();
         this.userAuthService.setisLoggedIn(false);
-        this.loggedin=false;
+        this.loggedin = false;
       }
     })
-    return  this.router.navigate(['/']);
+    return this.router.navigate(['/']);
 
   }
 

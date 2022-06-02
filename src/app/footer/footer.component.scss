@@ -1,17 +1,18 @@
 @import "../../assets/scss/colours.scss";
 
-footer{
-    background-color: $light!important;
-  }
-
-.text-dark{
-    color: $dark !important;
-    
+footer {
+    background-color: $light !important;
 }
+
+.text-dark {
+    color: $dark  !important;
+
+}
+
 h2 {
-    color: $c1 !important;
-}
-.text-dark:hover{
-    color: $c2 !important;
+    color: $c1  !important;
 }
 
+.text-dark:hover {
+    color: $c2  !important;
+}

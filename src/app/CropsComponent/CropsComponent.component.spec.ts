@@ -11,9 +11,9 @@ describe('CropsComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CropsComponentComponent ]
+      declarations: [CropsComponentComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

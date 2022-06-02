@@ -11,9 +11,9 @@ describe('FarmerCropsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FarmerCropsComponent ]
+      declarations: [FarmerCropsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

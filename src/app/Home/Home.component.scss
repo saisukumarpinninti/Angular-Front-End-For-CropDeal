@@ -2,67 +2,69 @@
 @import "../../assets/scss/animations.scss";
 
 // Container 
-.container-fluid{
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-  }
+.container-fluid {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
-  .parallax h1{
-    color: $light !important;
-    animation: fadeInAnimation ease 3s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    font-family: 'Koulen', cursive;
-    font: 2rem ;
-    font-weight: bold;
-    transform: translateY(100%) ;
-    text-align: center;
-    text-shadow: 8px 8px 8px $dark;
-  }
-  
-  .parallax h1:hover {
-    color:$c1;
-    text-shadow: 8px 8px 8px $dark;
-    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out .5s;
-  }
+.parallax h1 {
+  color: $light  !important;
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  font-family: 'Koulen', cursive;
+  font: 2rem;
+  font-weight: bold;
+  transform: translateY(100%);
+  text-align: center;
+  text-shadow: 8px 8px 8px $dark;
+}
 
-  #expandmore{
-    animation: float 3s ease-in-out infinite ;
-    padding-top: 60px;
-    padding-bottom: -10px; 
-    margin-left: 50%;
-    font-size: 3rem;
-    font-weight: bold;
-    color: $c3;
-    text-decoration: none;
-    transition:  ease-in-out .4s;
-  }
+.parallax h1:hover {
+  color: $c1;
+  text-shadow: 8px 8px 8px $dark;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out .5s;
+}
 
-  #logo1{
-    width: 50%;
-    height: 50%;
+#expandmore {
+  animation: float 3s ease-in-out infinite;
+  padding-top: 60px;
+  padding-bottom: -10px;
+  margin-left: 50%;
+  font-size: 3rem;
+  font-weight: bold;
+  color: $c3;
+  text-decoration: none;
+  transition: ease-in-out .4s;
+}
 
-  }
-  #logo1:hover{
-    transition:  ease-in-out .6s;
-    animation: float 1.6s ease-in-out  reverse;
+#logo1 {
+  width: 50%;
+  height: 50%;
 
-  }
+}
 
-  .text-left{
-    margin-left: 20px;
-    color: $c3 !important;
-  }
+#logo1:hover {
+  transition: ease-in-out .6s;
+  animation: float 1.6s ease-in-out reverse;
 
-  .card-img-top{
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-  }
- .p2{
+}
+
+.text-left {
+  margin-left: 20px;
+  color: $c3  !important;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.p2 {
   background-image: url(https://images.pexels.com/photos/1443867/pexels-photo-1443867.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   background-repeat: no-repeat;
   background-size: cover;
@@ -70,63 +72,70 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; 
- }
-  #crop{
-    margin-left: 20px;
-    width: 100%;
-    height: 100%;
-    justify-content: space-around;
-  }
- 
-  .card{
-    scale: 0.5;
-    width: 50%;
-    margin-top: 20px;
-    transition:  ease .4s;
-  }
+  flex-direction: column;
+}
 
-  .card:hover{
-     box-shadow: 0 0 10px $dark;
-    transform: translateY(-5px);
-  }
-  .card-title{
-    font-size: 1.5rem;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-     color: $c1;
-  }
-  .card-text{
-    font-size: 1rem;
-    color: $c4;
-  }
+#crop {
+  margin-left: 20px;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
 
-  .btn-primary:hover{
-    background-color: $c2;
-    border-color: $c2;
-    color: $c3;
-  }
-  
-hr,#abs,.abs{
+.card {
+  scale: 0.5;
+  width: 50%;
+  margin-top: 20px;
+  transition: ease .4s;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px $dark;
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: $c1;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: $c4;
+}
+
+.btn-primary:hover {
+  background-color: $c2;
+  border-color: $c2;
+  color: $c3;
+}
+
+hr,
+#abs,
+.abs {
   width: 100%;
   height: 6px;
-  background-color: $c1 !important;
+  background-color: $c1  !important;
   border: none;
   margin-bottom: -1%;
   margin-left: 0%;
   margin-right: 0%;
 }
 
-h2{
+h2 {
   font-family: 'Koulen', cursive;
   font-size: 2rem;
-  color: $c1 !important;
+  color: $c1  !important;
 }
-p{
+
+p {
   font-size: 1rem;
   color: $dark;
 }
-.container-get-started{
-  background-color: $light!important;
+
+.container-get-started {
+  background-color: $light !important;
   width: 100%;
   height: 100%;
   justify-content: center;

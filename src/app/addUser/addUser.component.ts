@@ -34,39 +34,40 @@ export class AddUserComponent implements OnInit {
     if (this.LoggedInUser == true) {
       Swal.fire('You Are already Logged In', '', 'error');
       this.router.navigate(['/Home']);
-  }
-   else if (this.LoggedInUser == false&&this.Userrole=='Farmer') {
+    }
+    else if (this.LoggedInUser == false && this.Userrole == 'Farmer') {
       this.ProfileForm = this.f.group({
         id: ['0', Validators.required],
-          firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-          lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-          password: ['', Validators.required],
-          dob: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-          address: ['', Validators.required],
-          paymentInfo: ['', Validators.required],
-          status: [true, Validators.required] });
-  }
-  else if (this.LoggedInUser == false&&this.Userrole=='Dealer') {
-        this.ProfileForm = this.f.group({
-          id: [ '0' , Validators.required],
-          firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-          lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-          password: ['', Validators.required],
-          dob: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-          address: ['', Validators.required],
-          paymentInfo: ['', Validators.required],
-          status: [true, Validators.required],
-          Addons: ['']
-        });
-      }
-  else {
-    Swal.fire('Invalid Url', '', 'error');
-    this.router.navigate(['/Home']);
-  }
+        firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        password: ['', Validators.required],
+        dob: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+        address: ['', Validators.required],
+        paymentInfo: ['', Validators.required],
+        status: [true, Validators.required]
+      });
+    }
+    else if (this.LoggedInUser == false && this.Userrole == 'Dealer') {
+      this.ProfileForm = this.f.group({
+        id: ['0', Validators.required],
+        firstName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        lastName: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+        password: ['', Validators.required],
+        dob: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+        address: ['', Validators.required],
+        paymentInfo: ['', Validators.required],
+        status: [true, Validators.required],
+        Addons: ['']
+      });
+    }
+    else {
+      Swal.fire('Invalid Url', '', 'error');
+      this.router.navigate(['/Home']);
+    }
   }
   get status() { return this.ProfileForm.get('status'); }
   get password() { return this.ProfileForm.get('password'); }
@@ -78,47 +79,47 @@ export class AddUserComponent implements OnInit {
   get address() { return this.ProfileForm.get('address'); }
   get dob() { return this.ProfileForm.get('dob'); }
   get paymentInfo() { return this.ProfileForm.get('paymentInfo'); }
-  
+
   addProfile(ProfileForm: any) {
-      if (this.Userrole == 'Farmer') {
-        console.log(ProfileForm.value);
-        this.FarmerService.addFarmer(this.ProfileForm.value).subscribe(
-          data => {
-             this.ID=data; 
-            Swal.fire('Profile added Successfully ! Your Profile ID is ' + this.ID.id, '', 'success');
-          },
-          error => {
-            this.errorMessage = error;
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-            })
-            console.log(this.errorMessage);
-          });
-      }
-      else if (this.Userrole == 'Dealer') {
-        this.DealerService.addDealer(this.ProfileForm.value).subscribe(
-          data => {
-            this.ID=data; 
-            Swal.fire('Profile added Successfully ! Your Profile ID is ' + this.ID.id, '', 'success');
-          }, error => {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-            })
-            this.errorMessage = error; console.log(this.errorMessage);
-          });
-      }
-      else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Profile Not added !',
-        })
-      }
+    if (this.Userrole == 'Farmer') {
+      console.log(ProfileForm.value);
+      this.FarmerService.addFarmer(this.ProfileForm.value).subscribe(
+        data => {
+          this.ID = data;
+          Swal.fire('Profile added Successfully ! Your Profile ID is ' + this.ID.id, '', 'success');
+        },
+        error => {
+          this.errorMessage = error;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
+          console.log(this.errorMessage);
+        });
     }
+    else if (this.Userrole == 'Dealer') {
+      this.DealerService.addDealer(this.ProfileForm.value).subscribe(
+        data => {
+          this.ID = data;
+          Swal.fire('Profile added Successfully ! Your Profile ID is ' + this.ID.id, '', 'success');
+        }, error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
+          this.errorMessage = error; console.log(this.errorMessage);
+        });
+    }
+    else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Profile Not added !',
+      })
+    }
+  }
 
 }
 

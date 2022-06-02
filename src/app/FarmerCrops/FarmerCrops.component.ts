@@ -39,11 +39,13 @@ export class FarmerCropsComponent implements OnInit {
         this.farmercheck = true;
         this._cropservice.getFarmerCrops(this.LoggedInUser.id).subscribe(
           data => { this.Crops = data; },
-          error => { this.errorMessage = error;  Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-          }) ;console.log(this.errorMessage); });
+          error => {
+            this.errorMessage = error; Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            }); console.log(this.errorMessage);
+          });
         this.CropForm = this.f.group({
           id: [{ value: '' }],
           farmerid: [this.LoggedInUser.id, Validators.required],
@@ -73,14 +75,14 @@ export class FarmerCropsComponent implements OnInit {
       }
     });
   }
-  
-get id():any {return this.CropForm.get('id');}
-get farmerid():any {return this.CropForm.get('farmerid');}
-get name():any {return this.CropForm.get('name');}
-get cost():any {return this.CropForm.get('cost');}
-get quantity():any {return this.CropForm.get('quantity');}
-get type():any {return this.CropForm.get('type');}
-get Active():any {return this.CropForm.get('Active');}
+
+  get id(): any { return this.CropForm.get('id'); }
+  get farmerid(): any { return this.CropForm.get('farmerid'); }
+  get name(): any { return this.CropForm.get('name'); }
+  get cost(): any { return this.CropForm.get('cost'); }
+  get quantity(): any { return this.CropForm.get('quantity'); }
+  get type(): any { return this.CropForm.get('type'); }
+  get Active(): any { return this.CropForm.get('Active'); }
 
   UpdateCrop(id: any) {
     this.LoadCrop(id);

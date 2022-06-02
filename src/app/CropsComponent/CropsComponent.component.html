@@ -3,18 +3,19 @@
 
 <!-- Boot Strap Cards -->
 <div class="container-fluid">
-  <div class="row" >
-    <div class="col-sm-3" *ngFor="let crop of crops"  id="crop">
-      <div class="card" >
-        <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap" >
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let crop of crops" id="crop">
+      <div class="card">
+        <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">
         <div class="card-body">
-          <h1 class="card-title"><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for {{crop.quantity}} {{crop.type}}s</h1>
-            <ul class="card-text text-left">
-              <li>Name: {{crop.name}}</li>
-              <li>Quantity: {{crop.quantity}} {{crop.type}}s</li>
-              <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
-            </ul>
-          <a href="#" class="btn btn-primary btn-block" routerLink="/crop/{{crop.id}}" >Buy Crop</a>
+          <h1 class="card-title"><i class="fa-solid fa-indian-rupee-sign"></i> {{crop.cost*crop.quantity}} for
+            {{crop.quantity}} {{crop.type}}s</h1>
+          <ul class="card-text text-left">
+            <li>Name: {{crop.name}}</li>
+            <li>Quantity: {{crop.quantity}} {{crop.type}}s</li>
+            <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
+          </ul>
+          <a href="#" class="btn btn-primary btn-block" routerLink="/crop/{{crop.id}}">Buy Crop</a>
         </div>
         <br>
       </div>
