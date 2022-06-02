@@ -32,7 +32,7 @@
               <label for="inputPassword">Password <i class="fa-solid fa-key"></i></label>
               <input type="password" id="inputPassword" class="form-control" placeholder="Password"
                 formControlName="password" required>
-              <small class="text-danger" *ngIf="password?.errors?.['required'] && password?.touched">
+              <small class="text-danger" *ngIf="password?.errors?.['required'] ">
                 password is required</small>
             </div>
             <div class="form-label-group">
@@ -42,14 +42,7 @@
               <small class="text-danger" *ngIf="email?.errors?.['required'] && email?.touched">email is required</small>
               <small class="text-danger" *ngIf="email?.errors?.['email'] && email?.touched">email is invalid</small>
             </div>
-            <div class="form-label-group">
-              <label for="inputPhone">mobile Number <i class="fa-solid fa-phone"></i></label>
-              <input type="number" id="inputmobileNumber" class="form-control" placeholder="mobileNumber"
-                formControlName="mobileNumber" required>
-              <small class="text-danger"
-                *ngIf="mobileNumber?.errors?.['required'] && mobileNumber?.touched">mobileNumber
-                is required</small>
-            </div>
+          
           </div>
         </div>
         <br>
@@ -62,6 +55,14 @@
         <div class="card">
           <div class="card-body">
             <br>
+            <div class="form-label-group">
+              <label for="inputPhone">mobile Number <i class="fa-solid fa-phone"></i></label>
+              <input type="number" id="inputmobileNumber" class="form-control" placeholder="mobileNumber"
+                formControlName="mobileNumber" required>
+              <small class="text-danger"
+                *ngIf="mobileNumber?.errors?.['required'] && mobileNumber?.touched">mobileNumber
+                is required</small>
+            </div>
             <div class="form-label-group">
               <label for="address">address <i class="fa-solid fa-map-location-dot"></i></label>
               <input type="text" id="address" class="form-control " placeholder="address" formControlName="address"
@@ -77,17 +78,13 @@
                 is
                 required</small>
             </div>
-            <div class="form-label-group ">
-              <label for="status">status <span>&nbsp;</span></label>
-              <input type="text" id="status" class="form-control " placeholder="status" formControlName="status"
-                required autofocus>
-              <small class="text-danger " *ngIf="status?.errors?.['required'] && status?.touched">status is
-                required</small>
-            </div>
             <br>
-
-            <button class="btn  btn-outline-secondary btn-block" (click)="patch()">Reset</button>
             <button class="btn  btn-primary btn-block" [disabled]="ProfileForm.invalid" type="submit">Update</button>
+            <br>
+            <div class="btn  btn-outline-secondary " (click)="patch()">Reset <i class="fa-solid fa-arrow-rotate-left"></i></div>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <div class="btn  btn-outline-danger " (click)="DeleteProfile()">Remove <i class="fa-solid fa-trash-can"></i></div>
+            <br>
             <small class="text-danger" *ngIf="ProfileForm.invalid">Please Submit all the deatils.</small>
           </div>
         </div>

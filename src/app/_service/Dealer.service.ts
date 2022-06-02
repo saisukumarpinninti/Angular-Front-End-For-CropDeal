@@ -28,4 +28,7 @@ export class DealerService {
     return this.httpclient.put(this.PATH_OF_API + '/update', Dealer, { headers: this.authapplicationheader });
   }
 
+  public deleteDealer(ID: any) {
+    return this.httpclient.delete(this.PATH_OF_API + '/delete/' + ID, { headers: this.authenticationHeader });
+  }
 }

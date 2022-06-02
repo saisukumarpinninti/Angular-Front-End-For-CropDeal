@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
           mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
           address: ['', Validators.required],
           paymentInfo: ['', Validators.required],
-          status: ['', Validators.required]
+          status: [true, Validators.required]
         });
       }
       else if (this.Userrole == 'Dealer') {
@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
           mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
           address: ['', Validators.required],
           paymentInfo: ['', Validators.required],
-          status: ['', Validators.required],
+          status: [true, Validators.required],
           Addons: ['']
         });
       }
@@ -116,6 +116,32 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+  DeleteProfile() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon : 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'})
+   .then((result) => {
+      if (result.value) {
+        if (this.Userrole == 'Farmer') {
+          this.FarmerService.deleteFarmer(this.Profile.id);
+          Swal.fire('Deleted!','Your Profile has been deleted.','success');
+          this.router.navigate(['/Home']);
+    }
+        }
+        else if (this.Userrole == 'Dealer') {
+          this.DealerService.deleteDealer(this.Profile.id);
+              Swal.fire('Deleted!','Your Profile has been deleted.','success');
+              this.router.navigate(['/Home']);
+        }
+      });
+  }
+    
+
   UpdateProfile(ProfileForm: any) {
     if (confirm('Are you sure you want to update ?')) {
       if (this.Userrole == 'Farmer') {

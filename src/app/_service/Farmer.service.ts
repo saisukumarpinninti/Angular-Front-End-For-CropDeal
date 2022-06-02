@@ -35,4 +35,8 @@ export class FarmerService {
     return this.httpclient.put(this.PATH_OF_API + '/update', Farmer, { headers: this.authapplicationheader });
   }
 
+  public deleteFarmer(ID: any) {
+    console.log(ID);
+    return this.httpclient.delete(this.PATH_OF_API + '/delete/' + ID, { headers: this.authenticationHeader });
+  }
 }
