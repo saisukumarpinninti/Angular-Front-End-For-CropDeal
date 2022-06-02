@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError as ObservableThrowError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CropInterface } from '../CropsComponent/CropInterface';
+import { CropInterface } from '../Components/CropsComponent/CropInterface';
 @Injectable({
   providedIn: 'root'
 })

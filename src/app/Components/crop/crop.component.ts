@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { CropServiceService } from '../_service/CropService.service';
-import { UserauthService } from '../_service/userauth.service';
-import { FarmerService } from '../_service/Farmer.service';
+import { CropServiceService } from '../../_service/CropService.service';
+import { UserauthService } from '../../_service/userauth.service';
+import { FarmerService } from '../../_service/Farmer.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crop',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { CropServiceService } from '../_service/CropService.service';
-import { UserauthService } from '../_service/userauth.service';
+import { CropServiceService } from '../../_service/CropService.service';
+import { UserauthService } from '../../_service/userauth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 @Component({

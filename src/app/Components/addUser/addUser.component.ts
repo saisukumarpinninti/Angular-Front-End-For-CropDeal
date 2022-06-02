@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { UserauthService } from '../_service/userauth.service';
-import { FarmerService } from '../_service/Farmer.service';
-import { DealerService } from '../_service/Dealer.service';
+import { UserauthService } from '../../_service/userauth.service';
+import { FarmerService } from '../../_service/Farmer.service';
+import { DealerService } from '../../_service/Dealer.service';
 import Swal from 'sweetalert2';
 
 @Component({

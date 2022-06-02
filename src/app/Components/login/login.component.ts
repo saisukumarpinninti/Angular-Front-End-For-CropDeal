@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../_service/User.service';
-import { UserauthService } from '../_service/userauth.service';
+import { UserService } from '../../_service/User.service';
+import { UserauthService } from '../../_service/userauth.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',

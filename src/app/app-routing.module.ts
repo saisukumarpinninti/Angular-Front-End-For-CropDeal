@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './Home/Home.component';
-import { CropsComponentComponent } from './CropsComponent/CropsComponent.component';
-import { NavBarComponent } from './NavBar/NavBar.component';
-import { FooterComponent } from './footer/footer.component';
-import { CropComponent } from './crop/crop.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './Profile/Profile.component';
-import { FarmerCropsComponent } from './FarmerCrops/FarmerCrops.component';
-import { AddUserComponent } from './addUser/addUser.component';
+import { HomeComponent } from './Components/Home/Home.component';
+import { CropsComponentComponent } from './Components/CropsComponent/CropsComponent.component';
+import { NavBarComponent } from './Components/NavBar/NavBar.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { CropComponent } from './Components/crop/crop.component';
+import { LoginComponent } from './Components/login/login.component';
+import { ProfileComponent } from './Components/Profile/Profile.component';
+import { FarmerCropsComponent } from './Components/FarmerCrops/FarmerCrops.component';
+import { AddUserComponent } from './Components/addUser/addUser.component';
 const routes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: '', pathMatch: 'full', redirectTo: 'Home' },
