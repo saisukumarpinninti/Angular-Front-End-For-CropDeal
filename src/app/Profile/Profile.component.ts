@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UserauthService } from '../_service/userauth.service';
 import { FarmerService } from '../_service/Farmer.service';
 import { DealerService } from '../_service/Dealer.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-Profile',
   templateUrl: './ProfileComponent.html',
@@ -32,7 +33,7 @@ export class ProfileComponent implements OnInit {
     if (this.LoggedInUser == true) {
       this.route.paramMap.subscribe((params: ParamMap) => { this.ID = <any>params.get('id'); });
       this.User = this.userAuthService.getUser();
-      if (this.ID != this.User.id) { alert("You are not authorized to view this page"); this.router.navigate(['/Home']); }
+      if (this.ID != this.User.id) { Swal.fire("You are not authorized to view this page"); this.router.navigate(['/Home']); }
       this.Userrole = this.userAuthService.getRoles().split('_')[1];
       this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
       if (this.Userrole == 'Farmer') {
@@ -72,7 +73,7 @@ export class ProfileComponent implements OnInit {
       }
     }
     else {
-      alert('Please Login');
+      Swal.fire('Please Login');
       this.router.navigate(['/login']);
     }
   }
@@ -123,9 +124,15 @@ export class ProfileComponent implements OnInit {
         this.FarmerService.updateFarmer(this.Profile).subscribe(
           data => {
             this.Profile = data; this.patch();
-            alert('Profile Updated Successfully');
+            Swal.fire('Profile Updated Successfully');
           },
-          error => { this.errorMessage = error; console.log(this.errorMessage); });
+          error => { this.errorMessage = error; 
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+            console.log(this.errorMessage); });
       }
       else if (this.Userrole == 'Dealer') {
         this.Profile = this.ProfileForm.value;
@@ -133,11 +140,21 @@ export class ProfileComponent implements OnInit {
         this.DealerService.updateDealer(this.Profile).subscribe(
           data => {
             this.Profile = data; this.patch();
-            alert('Profile Updated Successfully');
-          }, error => { this.errorMessage = error; console.log(this.errorMessage); });
+            Swal.fire('Profile Updated Successfully');
+          }, error => { 
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+            this.errorMessage = error; console.log(this.errorMessage); });
       }
       else {
-        alert('Profile not updated');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Profile Not Updated !',
+        })
       }
     }
   }

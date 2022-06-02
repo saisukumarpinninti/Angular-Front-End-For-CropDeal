@@ -3,6 +3,7 @@ import { Router ,ActivatedRoute,ParamMap} from '@angular/router';
 import { CropServiceService } from '../_service/CropService.service';
 import { UserauthService } from '../_service/userauth.service';
 import { FarmerService } from '../_service/Farmer.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crop',
   templateUrl: './crop.component.html',
@@ -35,7 +36,7 @@ export class CropComponent implements OnInit {
     });
   }
   else {
-    alert('Please Login');
+    Swal.fire('Please Login');
     this.router.navigate(['/crops']);
   }
 }

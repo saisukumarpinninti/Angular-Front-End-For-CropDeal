@@ -3,6 +3,7 @@ import { FormGroup ,FormBuilder,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../_service/User.service';
 import { UserauthService } from '../_service/userauth.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setUser(response.userDetails);
         this.userAuthService.setisLoggedIn(true);
         location.reload();
-        alert('Login Successful');
+        Swal.fire('Login Successful');
         const role = this.userAuthService.getRoles();
         if (role === 'ROLE_Farmer') {
           this.router.navigate(['/Home']);
@@ -63,16 +64,38 @@ export class LoginComponent implements OnInit {
       (error) => {
         this.errorMessage = error.error.message;
         console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong! Please Try Again',
+        });
       }
     );
   }
 
   
   logout(){
-    this.userAuthService.clear();
-    this.submitted=false;
-    this.userAuthService.setisLoggedIn(false);
-    return  this.router.navigate(['/Home']);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't  to Logout!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'LoggedOut!',
+          'Your have LoggedOut SuccesFully.',
+          'success'
+        )
+        this.userAuthService.clear();
+        this.submitted=false;
+        this.userAuthService.setisLoggedIn(false);
+      }
+    })
+    return  this.router.navigate(['/']);
   }
   get username() {
     return this.loginForm.get('username');

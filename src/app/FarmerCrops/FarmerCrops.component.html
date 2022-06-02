@@ -32,7 +32,7 @@
   </div>
   <br>
   <!-- For Displaying All Crops -->
-  <h1 class="title text-center" *ngIf="!currentcrops">List of All Crops Posted By {{LoggedInUser.id}}</h1>
+  <h2 class="title text-center" *ngIf="!currentcrops">List of All Crops Posted By {{LoggedInUser.id}}</h2>
   <div class="row" *ngIf="!currentcrops">
     <div class="col-sm-2" *ngFor="let crop of Crops" id="crop">
       <div class="card">
@@ -68,7 +68,7 @@
             <div class="card">
               <div class="card-body">
                 <br>
-                <h2 class="text-center"><i class="fa-solid fa-user-pen"></i><br> ID:<span> {{id.value}}</span></h2>
+                <h1 class="text-center"><i class="fa-solid fa-user-pen"></i><br> ID:<span> {{id.value}}</span></h1>
                 <div class="form-label-group ">
                   <label for="name">name</label>
                   <input type="text" id="name" class="form-control " placeholder="name" formControlName="name" required autofocus>

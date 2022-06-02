@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CropServiceService } from '../_service/CropService.service';
 import { UserauthService } from '../_service/userauth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-FarmerCrops',
   templateUrl: './FarmerCrops.component.html',
@@ -38,7 +39,11 @@ export class FarmerCropsComponent implements OnInit {
         this.farmercheck = true;
         this._cropservice.getFarmerCrops(this.LoggedInUser.id).subscribe(
           data => { this.Crops = data; },
-          error => { this.errorMessage = error; console.log(this.errorMessage); });
+          error => { this.errorMessage = error;  Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          }) ;console.log(this.errorMessage); });
         this.CropForm = this.f.group({
           id: [{ value: '' }],
           farmerid: [this.LoggedInUser.id, Validators.required],
@@ -51,12 +56,12 @@ export class FarmerCropsComponent implements OnInit {
       }
       else {
         this.farmercheck = false;
-        alert("You are not a farmer");
+        Swal.fire("You are not a farmer");
         this.r.navigate(['/Home']);
       }
     }
     else {
-      alert("You are not logged in");
+      Swal.fire("You are not logged in");
       this.r.navigate(['/Home']);
     }
   }
@@ -68,6 +73,7 @@ export class FarmerCropsComponent implements OnInit {
       }
     });
   }
+  
 get id():any {return this.CropForm.get('id');}
 get farmerid():any {return this.CropForm.get('farmerid');}
 get name():any {return this.CropForm.get('name');}
@@ -100,13 +106,14 @@ get Active():any {return this.CropForm.get('Active');}
 
   onSubmit(CropForm: any) {
     if (CropForm.value.id == "new" && (CropForm.valid)) {
-      
       this._cropservice.addCrop(CropForm.value).subscribe(
         data => { this.Crops = data; console.log(this.Crops); },
         error => { this.errorMessage = error; console.log(this.errorMessage); });
       this.CropForm.reset();
       this.currentcrops = true;
       this.onCloseHandled();
+      Swal.fire('Crop Added Successfully');
+      window.location.reload();
     }
 
     else if (CropForm.value.id != "new" && CropForm.valid) {
@@ -119,9 +126,10 @@ get Active():any {return this.CropForm.get('Active');}
       this.CropForm.reset();
       this.currentcrops = true;
       this.onCloseHandled();
+      Swal.fire('Crop Updated Successfully');
     }
     else {
-      alert("Please fill the form correctly");
+      Swal.fire("Please fill the form correctly");
     }
   }
   openModal() {

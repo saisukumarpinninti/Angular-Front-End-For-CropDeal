@@ -23,6 +23,18 @@ body {
 }
 
 
+.swal2{
+&-title {
+  font-family: 'Mukta', sans-serif;
+  font-size: 2rem;
+  color: $c1 !important;
+}
+&-content {
+  font-family: 'Koulen', cursive;
+  font-size: 1.5rem;
+  color: $c1 !important;
+}
+}
 *::selection {
   background-color: $c1;
   color: $c3;
@@ -81,7 +93,7 @@ h{
   text-align: center;
 }
 &2 {
-  color: $c1  !important;
+  color: $light  !important;
   animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -105,8 +117,8 @@ h{
   }
 }
   &-outline-secondary {
-    color: $light  !important;
-    border-color: $c1;
+    color: $c2 !important;
+    border-color: $c2;
     transition: ease-in-out .4s;
     &:hover {
       color: $light  !important;

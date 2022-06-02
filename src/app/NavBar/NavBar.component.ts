@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../_service/User.service';
 import { UserauthService } from '../_service/userauth.service';
 import { LoginComponent } from '../login/login.component';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-NavBar',
   templateUrl: './NavBar.component.html',
@@ -34,11 +35,28 @@ export class NavBarComponent implements OnInit {
     
   }
   logout(){
-    confirm('Are you sure you want to logout?');
-    this.userAuthService.clear();
-    this.userAuthService.setisLoggedIn(false);
-    this.loggedin=false;
-    return  this.router.navigate(['/Home']);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't  to Logout!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'LoggedOut!',
+          'Your have LoggedOut SuccesFully.',
+          'success'
+        )
+        this.userAuthService.clear();
+        this.userAuthService.setisLoggedIn(false);
+        this.loggedin=false;
+      }
+    })
+    return  this.router.navigate(['/']);
+
   }
 
 }
