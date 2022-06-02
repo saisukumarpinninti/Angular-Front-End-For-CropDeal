@@ -22,7 +22,7 @@ export class DealerService {
   }
 
   public addDealer(Dealer: any) {
-    return this.httpclient.post(this.PATH_OF_API+'/add', Dealer, {headers: this.authapplicationheader});
+    return this.httpclient.post(this.PATH_OF_API+'/add', Dealer, {headers: this.applicationHeader});
   }
   public updateDealer(Dealer: any) {
     return this.httpclient.put(this.PATH_OF_API + '/update', Dealer, {headers: this.authapplicationheader});
