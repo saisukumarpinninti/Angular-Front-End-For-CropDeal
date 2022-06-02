@@ -126,13 +126,15 @@ export class ProfileComponent implements OnInit {
             this.Profile = data; this.patch();
             Swal.fire('Profile Updated Successfully');
           },
-          error => { this.errorMessage = error; 
+          error => {
+            this.errorMessage = error;
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
             })
-            console.log(this.errorMessage); });
+            console.log(this.errorMessage);
+          });
       }
       else if (this.Userrole == 'Dealer') {
         this.Profile = this.ProfileForm.value;
@@ -141,13 +143,14 @@ export class ProfileComponent implements OnInit {
           data => {
             this.Profile = data; this.patch();
             Swal.fire('Profile Updated Successfully');
-          }, error => { 
+          }, error => {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
             })
-            this.errorMessage = error; console.log(this.errorMessage); });
+            this.errorMessage = error; console.log(this.errorMessage);
+          });
       }
       else {
         Swal.fire({

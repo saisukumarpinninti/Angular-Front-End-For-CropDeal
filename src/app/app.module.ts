@@ -7,14 +7,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { CropServiceService } from './_service/CropService.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddUserComponent } from './addUser/addUser.component';
-
 
 @NgModule({
   declarations: [			
     AppComponent,
-    routedComponents,
-      AddUserComponent
+    routedComponents
    ],
   imports: [
     BrowserModule,

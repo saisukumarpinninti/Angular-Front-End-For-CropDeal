@@ -21,6 +21,9 @@ export class DealerService {
     return this.httpclient.get(this.PATH_OF_API + '/'+ID, {headers: this.authenticationHeader});
   }
 
+  public addDealer(Dealer: any) {
+    return this.httpclient.post(this.PATH_OF_API+'/add', Dealer, {headers: this.authapplicationheader});
+  }
   public updateDealer(Dealer: any) {
     return this.httpclient.put(this.PATH_OF_API + '/update', Dealer, {headers: this.authapplicationheader});
   }
