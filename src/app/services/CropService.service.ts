@@ -16,6 +16,10 @@ export class CropServiceService {
 
   constructor(private http: HttpClient) { }
 
+  getAllCrops(): Observable<CropInterface[]> {
+    return this.http.get<CropInterface[]>(this.PATH_OF_API + '/all',
+      { headers: this.authenticationHeader }).pipe(catchError(this.handlerError));
+  }
   getCrops(): Observable<CropInterface[]> {
     return this.http.get<CropInterface[]>(this.PATH_OF_API + '/Active/all')
       .pipe(catchError(this.handlerError));
