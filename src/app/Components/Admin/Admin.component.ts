@@ -166,12 +166,12 @@ export class AdminComponent implements OnInit {
         location.reload();
       },
       (error) => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
         console.log(error);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Something went wrong! Please Try Again',
+          text: 'Something went wrong! Please Try Again'+error.message,
         });
       }
     );

@@ -65,12 +65,21 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.errorMessage = error.error.message;
-        console.log(error);
-        Swal.fire({
+        // console.log(error.status);
+        if(error.status == 502){
+          Swal.fire({
+            title: 'Bad Credentials',
+            text: 'Please Enter Correct Credentials',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+          })
+        }
+
+        else {Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong! Please Try Again',
-        });
+        });}
       }
     );
   }
