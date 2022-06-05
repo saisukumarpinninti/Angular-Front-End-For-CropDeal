@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../_service/User.service';
-import { UserauthService } from '../../_service/userauth.service';
+import { UserService } from '../../services/User.service';
+import { UserauthService } from '../../services/userauth.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-NavBar',

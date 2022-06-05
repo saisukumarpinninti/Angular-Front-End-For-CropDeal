@@ -1,50 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from '../../services/User.service';
 import { UserauthService } from '../../services/userauth.service';
 import Swal from 'sweetalert2';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-Admin',
+  templateUrl: './Admin.component.html',
+  styleUrls: ['./Admin.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class AdminComponent implements OnInit {
   loginForm!: FormGroup;
-  userForm!: FormGroup;
   User: any;
-  Userrole: any;
   errorMessage: any;
   submitted: Boolean = false;
+  Userrole!: string;
   constructor(private f: FormBuilder,
     private userService: UserService,
     private userAuthService: UserauthService,
     private router: Router) { }
 
-  ngOnInit(): void {
-    this.loginForm = this.f.group({
-      usertype: ['', Validators.required],
-      username: ['', [Validators.required, Validators.pattern('^[1-9]*$')]],
-      password: ['', [Validators.required]]
-    });
-    //Checking if submitted or not 
+  ngOnInit() {
+
+    // Checking if submitted or not 
     this.submitted = this.userAuthService.isLoggedIn();
+    // this.submitted= true;
     if (this.submitted != false) {
       this.User = this.userAuthService.getUser();
       this.Userrole = this.userAuthService.getRoles().split('_')[1];
       //remove last element in the string
       this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
+      this.Userrole = 'Admin';
+      if (this.Userrole === 'Admin') {
+
+      }
+      else {
+        Swal.fire('You are not an Admin', '', 'error');
+        this.router.navigate(['/Home']);
+      }
+    }
+    else if (this.submitted == false) {
+      Swal.fire('You are not LoggedIn', '', 'error');
+      this.loginForm = this.f.group({
+        username: ['', [Validators.required, Validators.pattern('^[1-9]*$')]],
+        password: ['', [Validators.required]]
+      });
     }
   }
-
+  get username() {
+    return this.loginForm.get('username');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
   login(loginForm: any) {
-    this.userForm = this.f.group({
-      username: this.loginForm.value.usertype + this.loginForm.value.username,
-      password: this.loginForm.get('password'),
-    });
-
-    this.userService.login(this.userForm.value).subscribe(
+    this.loginForm.value.username = 'A' + this.loginForm.value.username;
+    console.log(this.loginForm.value);
+    this.userService.login(this.loginForm.value).subscribe(
       (response: any) => {
         console.log(response);
         this.userAuthService.setRoles(response.userDetails.role);
@@ -53,14 +65,6 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setisLoggedIn(true);
         Swal.fire('Login Successful');
         const role = this.userAuthService.getRoles();
-        if (role === 'ROLE_Farmer') {
-          this.router.navigate(['/Home']);
-        } else if (role === 'ROLE_Dealer') {
-          this.router.navigate(['/crops']);
-        }
-        else {
-          this.router.navigate(['/Home']);
-        }
         location.reload();
       },
       (error) => {
@@ -73,25 +77,6 @@ export class LoginComponent implements OnInit {
         });
       }
     );
-  }
-
-  Register() {
-    Swal.fire({
-      title: 'Register As',
-      text: "Please Select Your Role",
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Farmer',
-      cancelButtonText: 'Dealer'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['/addUser/Farmer']);
-      } else {
-        this.router.navigate(['/addUser/Dealer']);
-      }
-    })
   }
 
   logout() {
@@ -117,15 +102,4 @@ export class LoginComponent implements OnInit {
     })
     return this.router.navigate(['/']);
   }
-  get username() {
-    return this.loginForm.get('username');
-  }
-  get password() {
-    return this.loginForm.get('password');
-  }
-  get usertype() {
-    return this.loginForm.get('usertype');
-  }
-
-
 }

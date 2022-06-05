@@ -9,6 +9,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { ProfileComponent } from './Components/Profile/Profile.component';
 import { FarmerCropsComponent } from './Components/FarmerCrops/FarmerCrops.component';
 import { AddUserComponent } from './Components/addUser/addUser.component';
+import { AdminComponent } from './Components/Admin/Admin.component';
+import { PagenotfoundComponent } from './Components/pagenotfound/pagenotfound.component';
 const routes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: '', pathMatch: 'full', redirectTo: 'Home' },
@@ -17,7 +19,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'Profile/:id', component: ProfileComponent },
   { path: 'sell', component: FarmerCropsComponent },
-  { path: 'addUser/:role', component: AddUserComponent }
+  { path: 'addUser/:role', component: AddUserComponent },
+  { path: 'Admin', component: AdminComponent },
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent }
+ 
 ];
 
 @NgModule({
@@ -26,4 +31,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routedComponents = [HomeComponent, CropsComponentComponent, NavBarComponent, FooterComponent,
-  CropComponent, LoginComponent, ProfileComponent, FarmerCropsComponent, AddUserComponent];
+  CropComponent, LoginComponent, ProfileComponent, FarmerCropsComponent, AddUserComponent, AdminComponent];

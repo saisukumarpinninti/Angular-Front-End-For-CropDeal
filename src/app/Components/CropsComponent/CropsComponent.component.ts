@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CropServiceService } from '../../_service/CropService.service';
+import { CropServiceService } from '../../services/CropService.service';
 @Component({
   selector: 'app-CropsComponent',
   templateUrl: './CropsComponent.component.html',

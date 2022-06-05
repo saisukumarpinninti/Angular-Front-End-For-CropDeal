@@ -7,11 +7,10 @@
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
-  margin: 0px;
+  overflow-x: hidden !important;
+  margin: 0;
   padding: 0;
   font-family: 'Mukta', sans-serif;
-  ;
   scroll-behavior: smooth;
   transition: ease-in-out 0.5s;
   background-image: url("./assets/Images/ng.webp");
@@ -29,11 +28,18 @@ body {
     font-size: 2rem;
     color: $c1  !important;
   }
-
   &-content {
     font-family: 'Koulen', cursive;
     font-size: 1.5rem;
     color: $c1  !important;
+  }
+  &-confirm {
+    background-color: $c1  !important;
+    border-color: $c1  !important;
+  }
+  &-container{
+    padding: 0 !important;
+
   }
 }
 
