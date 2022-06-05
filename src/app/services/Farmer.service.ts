@@ -20,6 +20,9 @@ export class FarmerService {
     private httpclient: HttpClient,
   ) { }
 
+  public getAllFarmer() {
+    return this.httpclient.get(this.PATH_OF_API + '/all', { headers: this.authenticationHeader });
+  }
   public getFarmer(ID: any) {
     return this.httpclient.get(this.PATH_OF_API + '/' + ID, { headers: this.authenticationHeader });
   }

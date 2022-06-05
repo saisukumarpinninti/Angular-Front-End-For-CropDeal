@@ -58,6 +58,7 @@ export class NavBarComponent implements OnInit {
         this.loggedin = false;
       }
     })
+    location.reload();
     return this.router.navigate(['/']);
 
   }

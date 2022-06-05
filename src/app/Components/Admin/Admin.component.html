@@ -1,19 +1,152 @@
-<div class="container mt-5" >
-  <!-- Login Form -->
-  <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body " *ngIf="submitted">
-          <div class="h1 text-center">
-            <h1 class="text-center">Hello {{Userrole}} </h1>
-            <h1 class="text-center">{{errorMessage}}</h1>
-          </div>
-          <!-- Bootstrap logout button -->
-          <div class="text-center">
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="logout()">Logout</button>
-          </div>
+<div class="container-fluid">
+  <br>
+  <div class="row" *ngIf="submitted">
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-primary" (click)="LoadFarmers()">Farmers</button>
+      <span>&nbsp;</span>
+      <button type="button" class="btn btn-primary" (click)="LoadDealers()">Dealers</button>
+      <span>&nbsp;</span>
+      <button class="btn btn-primary">Crops</button>
+      <span>&nbsp;</span>
+      <div class="table" *ngIf="submitted&&(Farmer||Dealer||Crop)">
+      <div class="card" *ngIf="Farmer">
+        <div class="card-header card-header-primary" >
+          <h4 class="card-title">Farmers</h4>
         </div>
-        <div class="card-body " *ngIf="!submitted">
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search columns" #input>
+        </mat-form-field>
+        <div class="card-body">
+          <mat-table [dataSource]="datasoucre" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.id}} </mat-cell>
+            </ng-container>
+
+            <!-- firstName Column -->
+            <ng-container matColumnDef="firstName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> firstName </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.firstName}} </mat-cell>
+            </ng-container>
+
+            <!-- lastName Column -->
+            <ng-container matColumnDef="lastName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> lastName </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.lastName}} </mat-cell>
+            </ng-container>
+
+            <!-- mobileNumber Column -->
+            <ng-container matColumnDef="mobileNumber">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> mobileNumber </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.mobileNumber}} </mat-cell>
+            </ng-container>
+
+            <!-- email Column -->
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.email}} </mat-cell>
+            </ng-container>
+
+            <!-- address Column -->
+            <ng-container matColumnDef="address">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> address </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.address}} </mat-cell>
+            </ng-container>
+
+            <!-- status Coloumn -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> status </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.status}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="FarmersdisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: FarmersdisplayedColumns;">
+            </mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+      <div class="card" *ngIf="Dealer">
+        <div class="card-header card-header-primary" >
+          <h4 class="card-title">Farmers</h4>
+        </div>
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search columns" #input>
+        </mat-form-field>
+        <div class="card-body">
+          <mat-table [dataSource]="datasoucre" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.id}} </mat-cell>
+            </ng-container>
+
+            <!-- firstName Column -->
+            <ng-container matColumnDef="firstName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> firstName </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.firstName}} </mat-cell>
+            </ng-container>
+
+            <!-- lastName Column -->
+            <ng-container matColumnDef="lastName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> lastName </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.lastName}} </mat-cell>
+            </ng-container>
+
+            <!-- mobileNumber Column -->
+            <ng-container matColumnDef="mobileNumber">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> mobileNumber </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.mobileNumber}} </mat-cell>
+            </ng-container>
+
+            <!-- email Column -->
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.email}} </mat-cell>
+            </ng-container>
+
+            <!-- address Column -->
+            <ng-container matColumnDef="address">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> address </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.address}} </mat-cell>
+            </ng-container>
+
+            <!-- status Coloumn -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> status </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer"> {{Farmer.status}} </mat-cell>
+            </ng-container>
+
+            <!-- Addons Coloumn -->
+            <ng-container matColumnDef="addons">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Addons </mat-header-cell>
+              <mat-cell *matCellDef="let Farmer">
+                <button mat-raised-button color="primary" >Addons</button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="FarmersdisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: FarmersdisplayedColumns;">
+            </mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div></div>
+    <br>
+    <br>
+  </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Login Form -->
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto card" *ngIf="!submitted">
+        <div class="card-body ">
           <h1 class="card-title text-center"><i class="fa-solid fa-chalkboard-user"></i></h1>
           <h1 class="card-title text-center">Admin Sign In </h1>
           <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
@@ -40,6 +173,7 @@
           </form>
         </div>
       </div>
+      <br>
+      <br>
     </div>
   </div>
-</div>

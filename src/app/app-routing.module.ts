@@ -30,5 +30,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routedComponents = [HomeComponent, CropsComponentComponent, NavBarComponent, FooterComponent,
-  CropComponent, LoginComponent, ProfileComponent, FarmerCropsComponent, AddUserComponent, AdminComponent];
+export const routedComponents = [HomeComponent,
+   CropsComponentComponent, NavBarComponent, FooterComponent,
+  CropComponent, LoginComponent, ProfileComponent, 
+  FarmerCropsComponent, AddUserComponent, AdminComponent,
+  PagenotfoundComponent];

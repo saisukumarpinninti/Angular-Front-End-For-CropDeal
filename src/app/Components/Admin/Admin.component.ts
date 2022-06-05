@@ -1,27 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/User.service';
 import { UserauthService } from '../../services/userauth.service';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FarmerService } from 'src/app/services/Farmer.service';
+import { DealerService } from 'src/app/services/Dealer.service';
+import {MatPaginator } from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 @Component({
   selector: 'app-Admin',
   templateUrl: './Admin.component.html',
   styleUrls: ['./Admin.component.scss']
 })
+
 export class AdminComponent implements OnInit {
   loginForm!: FormGroup;
   User: any;
   errorMessage: any;
   submitted: Boolean = false;
   Userrole!: string;
+  Farmers: any;
+  Dealer: Boolean = false;
+  Crop: Boolean = false;
+  FarmersdisplayedColumns: string[] = ['id','firstName', 'lastName',
+   'mobileNumber', 'email', 'address','status'];
+  datasoucre :any;
+  Dealers: any;
+  DealersdisplayedColumns: string[] = ['id', 'firstName', 'lastName', 
+  'mobileNumber', 'email', 'address', 'dob','status','Addons'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  Farmer: boolean=false;
+
   constructor(private f: FormBuilder,
     private userService: UserService,
     private userAuthService: UserauthService,
-    private router: Router) { }
+    private router: Router,
+    private farmerService: FarmerService,
+    private dealerService: DealerService) { }
+
+    ngAfterViewInit() {
+     
+    }
 
   ngOnInit() {
-
     // Checking if submitted or not 
     this.submitted = this.userAuthService.isLoggedIn();
     // this.submitted= true;
@@ -32,7 +56,6 @@ export class AdminComponent implements OnInit {
       this.Userrole = this.Userrole.substring(0, this.Userrole.length - 1);
       this.Userrole = 'Admin';
       if (this.Userrole === 'Admin') {
-
       }
       else {
         Swal.fire('You are not an Admin', '', 'error');
@@ -40,13 +63,55 @@ export class AdminComponent implements OnInit {
       }
     }
     else if (this.submitted == false) {
-      Swal.fire('You are not LoggedIn', '', 'error');
+      // Swal.fire('You are not LoggedIn', '', 'error');
       this.loginForm = this.f.group({
         username: ['', [Validators.required, Validators.pattern('^[1-9]*$')]],
         password: ['', [Validators.required]]
       });
     }
   }
+LoadDealers() {
+  this.Dealer= true;
+  this.dealerService.getAllDealer().subscribe(
+    (response: any) => {
+      this.Dealers = response;
+      this.datasoucre = new MatTableDataSource(this.Dealers);
+      this.datasoucre.sort = this.sort;
+      this.datasoucre.paginator = this.paginator;
+    },
+    (error) => {
+      this.errorMessage = error;
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong! Please Try Again',
+      });
+      console.log(error);
+    }
+  );
+  }
+LoadFarmers() {
+  this.Farmer= true;
+  this.farmerService.getAllFarmer().subscribe((data: any) => {
+    this.Farmers = data;
+    console.log(this.Farmers);
+     this.datasoucre = new MatTableDataSource(this.Farmers);
+     this.datasoucre.sort = this.sort;
+    this.datasoucre.paginator = this.paginator;
+    },
+    (error) => {
+      this.errorMessage = error;
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong! Please Try Again, If problem persists contact Admin error '+error.message,
+      });
+      console.log(error);});
+   }
+   applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.datasoucre.filter = filterValue.trim().toLowerCase();
+}
   get username() {
     return this.loginForm.get('username');
   }
@@ -79,27 +144,4 @@ export class AdminComponent implements OnInit {
     );
   }
 
-  logout() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't  to Logout!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'LoggedOut!',
-          'Your have LoggedOut SuccesFully.',
-          'success'
-        )
-        this.userAuthService.clear();
-        this.submitted = false;
-        this.userAuthService.setisLoggedIn(false);
-      }
-    })
-    return this.router.navigate(['/']);
-  }
 }
