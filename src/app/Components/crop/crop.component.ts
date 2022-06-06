@@ -3,7 +3,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CropServiceService } from '../../services/CropService.service';
 import { UserauthService } from '../../services/userauth.service';
 import { FarmerService } from '../../services/Farmer.service';
+import { PaymentService } from '../../services/Payment.service';
 import Swal from 'sweetalert2';
+import { HttpClient, HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-crop',
   templateUrl: './crop.component.html',
@@ -16,16 +18,24 @@ export class CropComponent implements OnInit {
   crop: any;
   LoggedInUser: any;
   _cropid: any;
+  user: any;
+  Purchased:boolean=false;
   constructor(
     private route: ActivatedRoute,
     private r: Router,
     private _cropservice: CropServiceService,
     private userAuthService: UserauthService,
     private router: Router,
-    private FarmerService: FarmerService
+    private FarmerService: FarmerService,
+    private PaymentService: PaymentService,
+    private httpclient: HttpClient
   ) { }
 
+
+
   ngOnInit() {
+    this.user = this.userAuthService.getUser();
+    console.log(this.user);
     this.LoggedInUser = this.userAuthService.isLoggedIn();
     if (this.LoggedInUser == true) {
       this.route.paramMap.subscribe((params: ParamMap) => {
@@ -48,5 +58,12 @@ export class CropComponent implements OnInit {
       data => { this.Farmer = data; console.log(this.Farmer); },
       error => { this.errorMessage = error; console.log(this.errorMessage); });
   }
+  purchase(id: string,cropcost: any,dealerid: string) {
+    window.open ( 'http://localhost:9069/'+'submitPaymentDetail?CUST_ID='+dealerid+'&TXN_AMOUNT='+cropcost+'&CropId='+id,
+     '_blank')?.focus();
+  }
+
+
+
 }
 
