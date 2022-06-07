@@ -59,8 +59,10 @@ export class CropComponent implements OnInit {
       error => { this.errorMessage = error; console.log(this.errorMessage); });
   }
   purchase(id: string,cropcost: any,dealerid: string) {
+    
     window.open ( 'http://localhost:9069/'+'submitPaymentDetail?CUST_ID='+dealerid+'&TXN_AMOUNT='+cropcost+'&CropId='+id,
      '_blank')?.focus();
+  
   }
 
 
