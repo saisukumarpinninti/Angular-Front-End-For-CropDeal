@@ -3,9 +3,9 @@
   <button type="button" class="btn btn-primary" (click)="AddCrop()">
     + Add New Crop </button>
   <span>&nbsp;</span>
-  <button type="button" class="btn btn-outline-secondary" (click)="currentcrops=false"> view All Crops </button>
+  <button type="button" class="btn btn-outline-secondary" (click)= allcrops()> view All Crops </button>
   <span>&nbsp;</span>
-  <button type="button" class="btn btn-outline-secondary" (click)="currentcrops=true"> view Current Crops </button>
+  <button type="button" class="btn btn-outline-secondary" (click)=activecrop()> view Current Crops </button>
   <!-- For Displaying current Crops -->
   <h1 class="text-center" *ngIf="currentcrops">List of Active Crops Posted By {{LoggedInUser.id}}</h1>
   <div class="row" *ngIf="currentcrops">

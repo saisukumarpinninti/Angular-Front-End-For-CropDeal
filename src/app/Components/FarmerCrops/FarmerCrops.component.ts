@@ -14,6 +14,7 @@ export class FarmerCropsComponent implements OnInit {
   isLoggedIn!: boolean;
   Userrole: any;
   currentcrops = true;
+  AllCrops: any;
   farmercheck = false;
   LoggedInUser: any;
   CropForm: any;
@@ -38,7 +39,9 @@ export class FarmerCropsComponent implements OnInit {
       if (this.Userrole == "Farmer") {
         this.farmercheck = true;
         this._cropservice.getFarmerCrops(this.LoggedInUser.id).subscribe(
-          data => { this.Crops = data; },
+          data => { this.Crops = data; this.AllCrops = data;
+            this.Crops = this.Crops.filter((x: any) => x.active == true);
+          console.log(this.Crops); },
           error => {
             this.errorMessage = error; Swal.fire({
               icon: 'error',
@@ -46,6 +49,7 @@ export class FarmerCropsComponent implements OnInit {
               text: 'Something went wrong!',
             }); console.log(this.errorMessage);
           });
+          
         this.CropForm = this.f.group({
           id: [{ value: '' }],
           farmerid: [this.LoggedInUser.id, Validators.required],
@@ -140,5 +144,12 @@ export class FarmerCropsComponent implements OnInit {
   onCloseHandled() {
     this.display = "none";
   }
-
+  allcrops() {
+    this.currentcrops = false;
+    this.Crops = this.AllCrops;
+  }
+  activecrop() {
+    this.currentcrops = true;
+    this.Crops = this.AllCrops.filter((x: any) => x.active == true);
+  }
 }
