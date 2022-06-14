@@ -4,7 +4,6 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3">
-      <div class="card">
       <div class="input-group mb-3">
         <input type="text" #sinput class="form-control" 
         placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" >
@@ -13,9 +12,8 @@
           <button class="btn  btn-secondary" type="reset" (click)="reset()">Reset</button>
         </div>
       </div>
-    </div>
   </div>
-    <!-- Search bar -->
+   
     <div class="col-sm-3" *ngFor="let crop of crops" id="crop">
       <div class="card">
         <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">

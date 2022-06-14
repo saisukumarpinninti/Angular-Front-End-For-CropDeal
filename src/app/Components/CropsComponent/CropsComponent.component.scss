@@ -8,8 +8,11 @@
   height: 100vh;
 }
 
-// @media screen and (max-width: 768px) {
-//   .container-fluid {
-//     flex-direction: column;
-//   }
-// }
+.col-sm-3{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 120%;
+  // height: 100vh;
+}
