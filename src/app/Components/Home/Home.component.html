@@ -2,15 +2,16 @@
   <div class="parallax">
     <!-- add image -->
     <div class="row">
-      <img src="../../assets/Images/logo.PNG" class="img-fluid  mx-auto " id="logo1" alt="logo">
       <div class="col-md-12">
-        <h1 class="text-center">A B2B DIGITAL MARKETPLACE<br>For Buying & selling Crops<br></h1>
-        <a class="text-center" [routerLink]="['/Home']" fragment="crops">
-          <mat-icon id="expandmore">expand_more</mat-icon>
-        </a>
-      </div>
+          <h1>{{v}}</h1><br><br>
+          <h2> Welcome to </h2>
+          <img src="../../../assets/Images/logo.PNG" alt="logo" id="logo1"class="mx-auto d-block">
+          <br>
+        <h2 class="text-center">A B2B DIGITAL MARKETPLACE<br>For Buying & selling Crops</h2>
+        <mat-icon id="expandmore">expand_more</mat-icon>
     </div>
     <hr>
+    <!-- crops Section -->
     <div class="p2">
       <h1 class="text-left">Buy Crops</h1>
       <div class="row" id="crop">
@@ -93,6 +94,7 @@
       </div>
       <br>
     </div>
+<!-- Get Started Section -->
     <div class="container-get-started">
       <div class="container">
         <br>
@@ -116,8 +118,5 @@
         </div>
       </div>
     </div>
-
   </div>
-
-
 </div>

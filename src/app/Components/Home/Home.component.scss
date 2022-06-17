@@ -1,6 +1,15 @@
 @import "../../../assets/scss/colours.scss";
 @import "../../../assets/scss/animations.scss";
 
+.parallax {
+  background-image: url("../../../assets/images/ng.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  & h2{
+    color: $dark !important;
+    
+  }
+}
 // Container 
 .container-fluid {
   padding: 0;
@@ -10,23 +19,22 @@
   align-items: center;
 }
 
-.parallax h1 {
-  color: $light  !important;
+h1{
+  color: $c1  !important;
   animation: fadeInAnimation ease 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   font-family: 'Koulen', cursive;
-  font: 2rem;
+  font-size: 3rem;
   font-weight: bold;
+  // Line height: 1.5;
   transform: translateY(100%);
   text-align: center;
-  text-shadow: 8px 8px 8px $dark;
-}
-
-.parallax h1:hover {
-  color: $c1;
-  text-shadow: 8px 8px 8px $dark;
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out .5s;
+  &:hover {
+    color: $c1;
+    text-shadow: 8px 8px 8px $dark;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out .5s;
+  }
 }
 
 #expandmore {
@@ -42,21 +50,22 @@
 }
 
 #logo1 {
-  width: 50%;
-  height: 50%;
-
-}
-
-#logo1:hover {
-  transition: ease-in-out .6s;
-  animation: float 1.6s ease-in-out reverse;
+  width: 30%;
+  height: 30%;
+  // black and white filter
+  // filter: brightness(120%) saturate(20%);
 
 }
 
 .text-left {
   margin-left: 20px;
   color: $c3  !important;
+  font-size: 1.5rem;
+  &:hover {
+    color: $c3  !important;
+  }
 }
+
 
 .card-img-top {
   width: 100%;
@@ -87,41 +96,22 @@
   width: 50%;
   margin-top: 20px;
   transition: ease .4s;
+  &:hover {
+    box-shadow: 0 0 10px $dark;
+    transform: translateY(-5px);
+  }
+  &-title {
+    font-size: 1.5rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: $c1;
+  }
+  &-text {
+    font-size: 1rem;
+    color: $c4;
+  }
 }
 
-.card:hover {
-  box-shadow: 0 0 10px $dark;
-  transform: translateY(-5px);
-}
 
-.card-title {
-  font-size: 1.5rem;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: $c1;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: $c4;
-}
-
-.btn-primary:hover {
-  background-color: $c2;
-  border-color: $c2;
-  color: $c3;
-}
-
-hr,
-#abs,
-.abs {
-  width: 100%;
-  height: 6px;
-  background-color: $c1  !important;
-  border: none;
-  margin-bottom: -1%;
-  margin-left: 0%;
-  margin-right: 0%;
-}
 
 h2 {
   font-family: 'Koulen', cursive;
@@ -135,7 +125,7 @@ p {
 }
 
 .container-get-started {
-  background-color: $light !important;
+  background-color: $light  !important;
   width: 100%;
   height: 100%;
   justify-content: center;
