@@ -1,6 +1,7 @@
 <!-- BootStrapLoginForm -->
 
-<div class="container mt-5">
+<div class="container">
+  <br>
   <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
@@ -14,6 +15,7 @@
             <button class="btn btn-lg btn-primary btn-block text-uppercase" (click)="logout()">Logout</button>
           </div>
         </div>
+       
         <div class="card-body " *ngIf="!submitted">
           <h1 class="card-title text-center"><i class="fa-solid fa-user"></i></h1>
           <h1 class="card-title text-center">Sign In </h1>
@@ -45,7 +47,7 @@
             </div>
             <br>
             <button class="btn  btn-primary btn-block" [disabled]="loginForm.invalid" type="submit">Sign in</button>
-            <small class="text-danger" *ngIf="loginForm.invalid">Please Submit all the deatils.</small>
+            <small class="text-danger" *ngIf="loginForm.invalid&&loginForm.touched">Please Submit all the deatils.</small>
             <label class="text-danger" *ngIf="loginForm.invalid">{{errorMessage}}</label>
             <div class="btn btn-outline-secondary btn-block" type="menu" (click)="Register()" *ngIf="!loginForm.valid">
               Register</div>

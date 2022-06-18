@@ -1,13 +1,29 @@
 @import "../../../assets/scss/colours.scss";
 @import "../../../assets/scss/animations.scss";
 
+
+h2 {
+  font-family: 'Koulen', cursive;
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1rem;
+  color: $dark;
+}
+
 .parallax {
-  background-image: url("../../../assets/images/ng.webp");
-  background-size: cover;
+  background-image: url("https://www.theindiaforum.in/sites/default/files/field/image/2021/05/28/ramkumar-radhakrishnan-wikimedia-1622193304.jpeg"), linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+  );;
+  background-size: contain;
   background-repeat: no-repeat;
+  
+  background-blend-mode: multiply;
   & h2{
-    color: $dark !important;
-    
+    color: $light !important;
   }
 }
 // Container 
@@ -27,13 +43,27 @@ h1{
   font-family: 'Koulen', cursive;
   font-size: 3rem;
   font-weight: bold;
-  // Line height: 1.5;
   transform: translateY(100%);
   text-align: center;
+}
+.container-get-started{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: $light !important;
+  border-radius: 10px;
+  padding: 20px;
+  transition: ease-in-out .4s;
   &:hover {
-    color: $c1;
-    text-shadow: 8px 8px 8px $dark;
-    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out .5s;
+    background-color: $c2;
+    color: $light !important;
+    transition: ease-in-out .4s;
+  }
+  h2{
+    color: $c2 !important;
   }
 }
 
@@ -50,7 +80,7 @@ h1{
 }
 
 #logo1 {
-  width: 30%;
+  width: 25%;
   height: 30%;
   // black and white filter
   // filter: brightness(120%) saturate(20%);
@@ -111,18 +141,6 @@ h1{
   }
 }
 
-
-
-h2 {
-  font-family: 'Koulen', cursive;
-  font-size: 2rem;
-  color: $c1  !important;
-}
-
-p {
-  font-size: 1rem;
-  color: $dark;
-}
 
 .container-get-started {
   background-color: $light  !important;

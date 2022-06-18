@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit {
             confirmButtonColor: '#3085d6',
           })
         }
-
         else {Swal.fire({
           icon: 'error',
           title: 'Oops...',
