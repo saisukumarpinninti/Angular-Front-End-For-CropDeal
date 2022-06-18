@@ -23,8 +23,9 @@
             </ul>
             <button class="btn btn-primary btn-block" (click)="UpdateCrop(crop.id)">Edit
               Crop</button>
+            <button class="btn btn-danger btn-block" (click)="inactivecrop(crop.id)">Delete</button>
           </div>
-          <br>
+         
         </div>
       </div>
     </div>
@@ -44,8 +45,9 @@
             <li>quantity: {{crop.quantity}} {{crop.type}}</li>
             <li>Cost: {{crop.cost}} per 1 {{crop.type}}</li>
           </ul>
-          <button class="btn btn-primary btn-block" *ngIf="crop.active" [disabled]="!crop.active">Edit
-            Crop</button>
+          <button class="btn btn-primary btn-block"  *ngIf="crop.active">Active</button>
+          <button class="btn btn-danger btn-block"  *ngIf="!crop.active">Sold</button>
+          
         </div>
         <br>
       </div>

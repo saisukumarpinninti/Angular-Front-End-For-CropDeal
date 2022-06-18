@@ -1,9 +1,12 @@
 @import "../../../assets/scss/colours.scss";
 
 .container-fluid {
-    //  white overlay
-
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
+}
+h1{
+    color: #fff !important;
+    text-align: center;
+    font-size: 1.5rem;
 }

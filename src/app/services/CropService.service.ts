@@ -34,7 +34,7 @@ export class CropServiceService {
       { headers: this.authenticationHeader }).pipe(catchError(this.handlerError));
   }
 
-  getFarmerCrops(farmerid: number): Observable<CropInterface[]> {
+  getFarmerCrops(farmerid:any): Observable<CropInterface[]> {
     return this.http.get<CropInterface[]>(this.PATH_OF_API + '/farmer/' + farmerid + '/all',
       { headers: this.authenticationHeader }).pipe(catchError(this.handlerError));
   }
@@ -47,6 +47,11 @@ export class CropServiceService {
   updateCrop(crop: CropInterface): Observable<CropInterface> {
     return this.http.put<CropInterface>(this.PATH_OF_API + '/update', crop,
       { headers: this.authapplicationheader }).pipe(catchError(this.handlerError));
+  }
+
+  deleteCrop(id: any): Observable<CropInterface> {
+    return this.http.get<CropInterface>(this.PATH_OF_API + '/inactive/' + id,
+      { headers: this.authenticationHeader }).pipe(catchError(this.handlerError));
   }
 }
 
