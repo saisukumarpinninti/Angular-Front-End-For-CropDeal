@@ -44,8 +44,8 @@ body {
 }
 
 *::selection {
-  background-color: $c1;
-  color: $c3;
+  background-color: $c4;
+  color: $c1;
 }
 
 *::-webkit-scrollbar {
@@ -54,11 +54,11 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background-color: $dark;
+  background-color: $c4;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: $c2;
+  background-color: $c1;
   border-radius: 1px;
 }
 
@@ -171,12 +171,6 @@ h {
 .card {
   margin-top: 10px;
   transition: ease-in-out .4s;
-
-  // &:hover {
-  //   transform: translateY(-3px);
-  //   transition: ease-in-out .4s;
-  // }
-
   &-title {
     font-size: 1rem;
     font-family: koulen !important;
