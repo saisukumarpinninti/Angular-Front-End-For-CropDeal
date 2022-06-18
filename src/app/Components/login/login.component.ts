@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
         this.userAuthService.setToken(response.jwt);
         this.userAuthService.setUser(response.userDetails);
         this.userAuthService.setisLoggedIn(true);
-        Swal.fire('Login Successful');
+        Swal.fire('Login Successful'
+          , 'Please Reload The Page',);
         const role = this.userAuthService.getRoles();
         if (role === 'ROLE_Farmer') {
           this.router.navigate(['/Home']);
@@ -61,7 +62,6 @@ export class LoginComponent implements OnInit {
         else {
           this.router.navigate(['/Home']);
         }
-        location.reload();
       },
       (error) => {
         this.errorMessage = error.error.message;

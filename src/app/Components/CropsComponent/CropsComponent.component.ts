@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CropServiceService } from '../../services/CropService.service';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-CropsComponent',
@@ -14,15 +13,11 @@ export class CropsComponentComponent implements OnInit {
   public crops: any = [];
   public  orginalcrop: any = [];
   public clicked = true;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(private _cropservice: CropServiceService, private _Router: Router, private route: ActivatedRoute) { }
   ngOnInit() {
     this._cropservice.getCrops().subscribe(data => {this.crops = data;
       this.orginalcrop=this.crops;
-      this.paginator.pageSize = 3;
-      this.paginator.pageSizeOptions = [5, 10, 25, 100];
-
     },
       error => {
         console.log(error);
@@ -52,4 +47,32 @@ export class CropsComponentComponent implements OnInit {
     }
     }
   }
+  sort(value:any){
+    console.log(value);
+    if(value=='name'){
+      this.crops.sort((a:any,b:any)=>{
+        if(a.name<b.name){
+          return -1;
+        }
+        if(a.name>b.name){
+          return 1;
+        }
+        return 0;
+      }
+      );
+    }
+    if(value=='price'){
+      this.crops.sort((a:any,b:any)=>{
+        if(a.price<b.price){
+          return -1;
+        }
+        if(a.price>b.price){
+          return 1;
+        }
+        return 0;
+      }
+      );
+    }
+  }
+  
 }

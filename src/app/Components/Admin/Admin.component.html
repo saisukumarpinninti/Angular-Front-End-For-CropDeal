@@ -8,6 +8,9 @@
       <span>&nbsp;</span>
       <button class="btn btn-primary" (click)="LoadCrop()">Crops</button>
       <span>&nbsp;</span>
+      <h1>
+        <span class="badge badge-success" *ngIf="submitted&&!(Farmer||Dealer||Crop)">Hello Admin Please Choose any Method</span>
+      </h1>
       <div class="table" *ngIf="submitted&&(Farmer||Dealer||Crop)">
         <div class="card" *ngIf="Farmer">
           <div class="card-header card-header-primary">
@@ -177,7 +180,7 @@
               <!-- Active Coloumn -->
               <ng-container matColumnDef="Active">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
-                <mat-cell *matCellDef="let Crop"> {{Crop.Active}} </mat-cell>
+                <mat-cell *matCellDef="let Crop"> {{Crop.active}} </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="CropsdisplayedColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: CropsdisplayedColumns;">
@@ -228,3 +231,4 @@
     <br>
   </div>
 </div>
+<br>
