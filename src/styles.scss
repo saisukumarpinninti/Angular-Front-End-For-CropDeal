@@ -83,10 +83,8 @@ input {
   font-size: 16px;
   background-color: transparent;
   transition: ease .4s;
-
   &:focus {
-    background-color: $c3  !important;
-    border-bottom: 5px solid $c2  !important;
+    border-bottom: 5px solid $c3  !important;
     transition: ease .4s;
   }
 }
