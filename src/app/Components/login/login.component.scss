@@ -1,7 +1,9 @@
 @import "../../../assets/scss/colours.scss";
 @import "../../../assets/scss/animations.scss";
 
-
+.container{
+  height: 100vh;
+}
 .card {
   width: 350px;
   background-color: #fff;

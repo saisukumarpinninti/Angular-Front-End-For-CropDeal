@@ -1,6 +1,5 @@
 @import "../../../assets/scss/colours.scss";
 
-
 #details {
   padding: 10px;
   background-color: $light  !important;
@@ -8,9 +7,12 @@
   margin-bottom: 10px;
 }
 
-a {
-  text-decoration: underline;
-  color: $c2;
+.card-img-top{
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  border-color: $c1 !important;
+  border-style: solid;
 }
 
 h2 {
@@ -18,7 +20,6 @@ h2 {
   font-size: 2rem;
   color: $c1;
   text-align: center;
-
 }
 
 .card-body {
@@ -40,4 +41,14 @@ img {
   width: 70%;
   height: 70%;
   object-fit: cover;
+}
+.container-fluid {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("https://images.pexels.com/photos/139259/pexels-photo-139259.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

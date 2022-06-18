@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CropServiceService } from '../../services/CropService.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-CropsComponent',
   templateUrl: './CropsComponent.component.html',
@@ -11,10 +14,16 @@ export class CropsComponentComponent implements OnInit {
   public crops: any = [];
   public  orginalcrop: any = [];
   public clicked = true;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(private _cropservice: CropServiceService, private _Router: Router, private route: ActivatedRoute) { }
   ngOnInit() {
     this._cropservice.getCrops().subscribe(data => {this.crops = data;
-      this.orginalcrop=this.crops;},
+      this.orginalcrop=this.crops;
+      this.paginator.pageSize = 3;
+      this.paginator.pageSizeOptions = [5, 10, 25, 100];
+
+    },
       error => {
         console.log(error);
         Swal.fire({

@@ -1,20 +1,16 @@
-
 <h2 class="title text-center">List of all the available crops</h2>
-<!-- Boot Strap Cards -->
+<div class="col-sm-3">
+  <div class="input-group mb-3">
+    <input type="text" #sinput class="form-control" 
+    placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" >
+      <button class="btn btn-primary" type="button" (keyup)="filter(sinput.value)" (click)="filter(sinput.value)">Search</button>
+      <span>&nbsp;</span>
+      <button class="btn  btn-secondary" type="reset" (click)="reset()">Reset</button>
+  </div>
+</div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3">
-      <div class="input-group mb-3">
-        <input type="text" #sinput class="form-control" 
-        placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" >
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button" (click)="filter(sinput.value)">Search</button>
-          <button class="btn  btn-secondary" type="reset" (click)="reset()">Reset</button>
-        </div>
-      </div>
-  </div>
-   
-    <div class="col-sm-3" *ngFor="let crop of crops" id="crop">
+ <div class="col-sm-3" *ngFor="let crop of crops" id="crop">
       <div class="card">
         <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">
         <div class="card-body">
@@ -29,7 +25,7 @@
         </div>
         <br>
       </div>
-    </div>
+    </div> 
   </div>
 </div>
 <br>
