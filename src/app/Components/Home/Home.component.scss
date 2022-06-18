@@ -20,12 +20,13 @@ p {
   );;
   background-size: contain;
   background-repeat: no-repeat;
-  
   background-blend-mode: multiply;
   & h2{
     color: $light !important;
   }
 }
+
+
 // Container 
 .container-fluid {
   padding: 0;
