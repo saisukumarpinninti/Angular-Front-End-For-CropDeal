@@ -4,7 +4,6 @@
     <div class="col-md-6">
       <br>
       <!-- Profile Details  -->
-   
       <form class="form-signin" [formGroup]="ProfileForm" (ngSubmit)="UpdateProfile(ProfileForm)" *ngIf="Profile!=null">
         <div class="card">
           <div class="card-body">
@@ -34,7 +33,7 @@
               <label for="inputPassword">Password <i class="fa-solid fa-key"></i></label>
               <input type="password" id="inputPassword" class="form-control" placeholder="Password"
                 formControlName="password" required>
-              <small class="text-danger" *ngIf="password?.errors?.['required'] ">
+              <small class="text-danger" *ngIf="password?.errors?.['required'] && password?.touched ">
                 password is required</small>
             </div>
             <div class="form-label-group">
@@ -44,7 +43,6 @@
               <small class="text-danger" *ngIf="email?.errors?.['required'] && email?.touched">email is required</small>
               <small class="text-danger" *ngIf="email?.errors?.['email'] && email?.touched">email is invalid</small>
             </div>
-          
           </div>
         </div>
         <br>
@@ -83,9 +81,11 @@
             <br>
             <button class="btn  btn-primary btn-block" [disabled]="ProfileForm.invalid" type="submit">Update</button>
             <br>
-            <div class="btn  btn-outline-secondary " (click)="patch()">Reset <i class="fa-solid fa-arrow-rotate-left"></i></div>
+            <div class="btn  btn-outline-secondary " (click)="patch()">Reset <i
+                class="fa-solid fa-arrow-rotate-left"></i></div>
             <span>&nbsp;&nbsp;&nbsp;</span>
-            <div class="btn  btn-outline-danger " (click)="DeleteProfile()">Remove <i class="fa-solid fa-trash-can"></i></div>
+            <div class="btn  btn-outline-danger " (click)="DeleteProfile()">Remove <i class="fa-solid fa-trash-can"></i>
+            </div>
             <br>
             <small class="text-danger" *ngIf="ProfileForm.invalid">Please Submit all the deatils.</small>
           </div>
