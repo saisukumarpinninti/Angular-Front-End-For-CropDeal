@@ -68,8 +68,8 @@ export class LoginComponent implements OnInit {
         // console.log(error.status);
         if(error.status == 502){
           Swal.fire({
-            title: 'Bad Credentials',
-            text: 'Please Enter Correct Credentials',
+            title: 'Server Error',
+            text: 'Cant reach the server',
             icon: 'error',
             confirmButtonColor: '#3085d6',
           })

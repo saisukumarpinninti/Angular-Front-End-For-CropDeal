@@ -11,7 +11,7 @@
 </div>
 <div class="container-fluid">
   <div class="row">
- <div class="col-sm-3" *ngFor="let crop of crops" id="crop">
+ <div class="col-sm-3" *ngFor="let crop of (crops)" id="crop">
       <div class="card">
         <img class="card-img-top" src="https://img.krishijagran.com/media/17756/crops.jpg" alt="Card image cap">
         <div class="card-body">
@@ -28,6 +28,9 @@
       </div>
     </div> 
   </div>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+  </mat-paginator>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
 </div>
 <br>
 <br>
