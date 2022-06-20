@@ -48,11 +48,14 @@ export class CropsComponentComponent implements OnInit {
   }
   reset() {
     this.crops = this.orginalcrop;
+    this.length = this.orginalcrop.length;
   }
   filter(value: any) {
     // console.log(value);
     if (value && value.trim() !== '') {
       this.crops = this.crops.filter((item: any) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1);
+      this.length = this.crops.length;
+    }
       if (this.crops.length == 0) {
         Swal.fire({
           icon: 'error',
@@ -61,10 +64,12 @@ export class CropsComponentComponent implements OnInit {
           timer: 5000
       });
       this.crops = this.orginalcrop;
+      this.length=this.orginalcrop.length;
     }
     }
-  }
-  // divide into pages 
+    
+  
+  
  
   // sort(value:any){
   //   console.log(value);
