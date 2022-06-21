@@ -1,6 +1,8 @@
 @import "../../../assets/scss/colours.scss";
 
-
+.container-fluid{
+  height: 100vh;
+}
 @media screen and (min-width: 1280px) {
   .col-sm-3 {
     display: block;
